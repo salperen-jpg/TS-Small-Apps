@@ -61,15 +61,16 @@ const User = () => {
   const handleValues = (e: MouseEvent<HTMLElement>) => {
     if ((e.target as Element).classList.contains('icon')) {
       const label = (e.target as HTMLButtonElement).dataset.label!;
-      // if(label === 'date'){
-      //   setValue()
-      // }
+      if (label === 'dob') {
+        setValue(user[label]?.toString().substring(0, 15));
+        return;
+      }
       setProperty(label);
       setValue(user[label]);
     }
   };
 
-  const { email, phone, name, location, password, picture, dob } = user;
+  const { picture } = user;
 
   return (
     <div className='user'>
@@ -84,9 +85,9 @@ const User = () => {
         <button className='icon' data-label='email' onMouseOver={handleValues}>
           <MdOutlineEmail></MdOutlineEmail>
         </button>
-        {/* <button className='icon' data-label='dob' onMouseOver={handleValues}>
+        <button className='icon' data-label='dob' onMouseOver={handleValues}>
           <MdPassword></MdPassword>
-        </button> */}
+        </button>
         <button
           className='icon'
           data-label='location'
@@ -105,6 +106,14 @@ const User = () => {
           <MdPassword></MdPassword>
         </button>
       </div>
+      <button
+        type='button'
+        className='main-btn'
+        onClick={fethUser}
+        disabled={isLoading}
+      >
+        {isLoading ? 'Loading...' : 'Random Person'}
+      </button>
     </div>
   );
 };
