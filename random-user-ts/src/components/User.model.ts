@@ -1,13 +1,13 @@
 interface UserObjectKeys {
-  [key: string]: string | number | Date | undefined;
+  [key: string]: string;
 }
 
 export interface User extends UserObjectKeys {
-  email?: string;
-  phone?: string;
-  name?: string;
-  location?: string;
-  password?: string;
-  picture?: string;
-  dob?: Date;
+  email: string;
+  phone: string;
+  name: string;
+  location: string;
+  password: string;
+  picture: string;
+  dob: string;
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, MouseEvent } from 'react';
+import { useState, useEffect, MouseEvent } from 'react';
 import { User as UserT } from './User.model';
 import {
   MdOutlineEmail,
@@ -16,9 +16,9 @@ const User = () => {
     location: '',
     password: '',
     picture: '',
-    dob: new Date(),
+    dob: '',
   });
-  const [value, setValue] = useState<any>();
+  const [value, setValue] = useState('');
   const [property, setProperty] = useState('name');
 
   const fethUser = async () => {
@@ -44,7 +44,7 @@ const User = () => {
         location: name + number,
         password,
         picture: large,
-        dob: new Date(date),
+        dob: date,
       };
       setUser((prevUser) => newUser);
       setValue(name);
@@ -62,7 +62,8 @@ const User = () => {
     if ((e.target as Element).classList.contains('icon')) {
       const label = (e.target as HTMLButtonElement).dataset.label!;
       if (label === 'dob') {
-        setValue(user[label]?.toString().substring(0, 15));
+        let newDate = new Date(user[label]).toString().substring(0, 15);
+        setValue(newDate);
         return;
       }
       setProperty(label);
@@ -71,7 +72,6 @@ const User = () => {
   };
 
   const { picture } = user;
-
   return (
     <div className='user'>
       <div className='gray-box'></div>
