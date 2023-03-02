@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Movie from './Movie';
 const Movies = () => {
   const { movies, isLoading } = useMovieDBContext();
-  console.log(useMovieDBContext());
 
   if (isLoading) {
     return <div className='loading'></div>;

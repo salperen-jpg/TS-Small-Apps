@@ -1,28 +1,10 @@
-import React, { createContext, ReactNode, useState, useEffect } from 'react';
-
-const API_ENDPOINT = 'https://www.omdbapi.com/';
-// https://www.omdbapi.com/?apikey=4d5701f8&s=batman
-export type Movie = {
-  title: string;
-  year: string;
-  img?: string;
-  type: string;
-  id: string;
-};
-
-type ContextType = {
-  query?: string;
-  movies?: Movie[];
-  isLoading: boolean;
-  handleQuery: (text: string) => void;
-  isError: { show: boolean; text: string };
-};
+import React, { createContext, useState, useEffect } from 'react';
+import { Movie, ContextType } from './components/Movie.types';
+import { API_ENDPOINT } from './utils/endpoint';
 
 interface Props {
   children: React.ReactNode;
 }
-
-type ContextValue = {};
 
 const MovieDB = createContext<ContextType>({
   query: 'batman',
@@ -35,7 +17,7 @@ const MovieDB = createContext<ContextType>({
 export const MovieProvider = ({ children }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState('batman');
+  const [query, setQuery] = useState('snowden');
   const [isError, setIsError] = useState({
     show: false,
     text: '',
@@ -49,10 +31,9 @@ export const MovieProvider = ({ children }: Props) => {
       );
       const data = await response.json();
       if (data.Response === 'True') {
-        console.log(data);
         const mappedData = data.Search.map(
           (movie: {
-            Poster?: string;
+            Poster: string;
             Title: string;
             Type: string;
             Year: string;
