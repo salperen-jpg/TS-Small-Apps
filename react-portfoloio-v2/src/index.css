@@ -1,11 +1,15 @@
 /* 
 Fonts 
 */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Space+Grotesk:wght@400;600&display=swap');
 /* 
 Resetting
 */
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
 *,
 ::after,
 ::before {
@@ -14,7 +18,7 @@ Resetting
   box-sizing: border-box;
 }
 
-::root {
+:root {
   /* colors */
   --clr-primary-100: #c4c7e0;
   --clr-primary-200: #b0b4d5;
@@ -39,16 +43,33 @@ Resetting
   --black: #222;
   --white: #fff;
   --blueish: rgba(45, 39, 223, 1) 0%;
-  --pinkish: rgba(203, 35, 118, 1) 100%;
+  --pinkish: rgba(203, 35, 118, 1);
   --transition: all 0.3s linear;
   --spacing: 0.1rem;
   --radius: 5px;
-  --min-width: 95vw;
-  --max-width: 1170px;
+  --min-width: 90vw;
+  --max-width: 1100px;
   /* font */
-  --ff-primary: '';
+  --ff-primary: 'Space Grotesk', sans-serif;
+  --ff-secondary: 'Pacifico', cursive;
+  /* shadows */
+  --shadow-1: 0 1px 3px 0 rgba(255, 255, 255, 1),
+    0 1px 2px 0 rgba(255, 255, 255, 1);
+  --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
+body {
+  font-family: var(--ff-primary);
+  line-height: 1.5;
+  background: var(--clr-primary-500);
+  background: #141728;
+  color: var(--grey-300);
+}
 img {
   display: block;
   width: 100%;
@@ -56,6 +77,7 @@ img {
 
 a {
   text-decoration: none;
+  color: var(--grey-300);
 }
 
 ul {
@@ -95,6 +117,45 @@ h4 {
     font-size: 1rem;
   }
 }
-body {
-  font-family: 'Space Grotesk';
+
+section {
+  padding: 5rem 0;
 }
+
+.btn {
+  display: inline-block;
+  padding: 0.375rem 0.775rem;
+  background-color: var(--clr-primary-500);
+  color: var(--white);
+  border: transparent;
+  text-transform: capitalize;
+  font-weight: 700;
+  transition: var(--transition);
+  border-radius: var(--radius);
+  letter-spacing: var(--spacing);
+  cursor: pointer;
+}
+/* UNDERLINE */
+.underline {
+  width: 15rem;
+  height: 4px;
+  background: linear-gradient(to right, var(--blueish), var(--pinkish));
+  margin: 1rem 0;
+}
+.title .underline {
+  width: 8rem;
+}
+
+/* h1 {
+  background: linear-gradient(68.97deg, #101023 24.3%, #192155 76.31%);
+  background-image: linear-gradient(
+    to left,
+    rgba(45, 39, 223, 1) 0%,
+    rgba(203, 35, 118, 1) 100%
+  );
+  background-image: linear-gradient(to left, red, blue, green);
+  background-size: cover;
+  background-clip: text;
+  color: transparent;
+  width: 500px;
+} */
