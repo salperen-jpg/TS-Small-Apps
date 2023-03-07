@@ -17,7 +17,7 @@ const Experience = () => {
             return (
               <button
                 key={index}
-                className='btn experience-btn'
+                className={index === exp ? 'btn active' : 'btn'}
                 onClick={() => setExp(index)}
               >
                 {e.company}
@@ -47,6 +47,7 @@ const Experience = () => {
 };
 
 const Wrapper = styled.section`
+  position: relative;
   .title {
     text-align: center;
     h2 {
@@ -68,6 +69,9 @@ const Wrapper = styled.section`
     display: flex;
     justify-content: center;
     gap: 1rem;
+  }
+  .active {
+    background-color: var(--pinkish);
   }
   .info {
     .job-title {
@@ -118,6 +122,43 @@ const Wrapper = styled.section`
     .btn-container {
       flex-direction: column;
       justify-content: flex-start;
+      /* align-items: flex-start; */
+    }
+    .btn-container .btn {
+      background-color: transparent;
+      border-radius: 0;
+    }
+    .btn-container .btn:hover {
+      color: var(--pinkish);
+      padding-left: 1rem;
+      border-left: 3px solid var(--pinkish);
+    }
+    .btn-container .active {
+      color: var(--pinkish);
+      border-left: 3px solid var(--pinkish);
+    }
+  }
+  @media (min-width: 1300px) {
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 10%;
+      width: 80%;
+      height: 100%;
+      margin: 0 auto;
+      border-inline-start: 10px solid;
+      border-block-start: 10px solid;
+      border-image-source: radial-gradient(
+        circle at top right,
+        transparent 10%,
+        var(--blueish),
+        var(--pinkish),
+        transparent 100%
+      );
+      border-image-slice: 1;
+
+      z-index: -1;
     }
   }
 `;

@@ -56,6 +56,7 @@ const Wrapper = styled.nav`
       letter-spacing: var(--spacing);
       background: linear-gradient(to right, var(--blueish), var(--pinkish));
       background-clip: text;
+      -webkit-background-clip: text;
       color: transparent;
       font-family: var(--ff-secondary);
     }

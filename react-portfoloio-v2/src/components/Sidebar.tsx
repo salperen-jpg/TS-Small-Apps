@@ -51,4 +51,7 @@ const Wrapper = styled.div`
       margin-bottom: 0;
     }
   }
+  @media (min-width: 992px) {
+    display: none;
+  }
 `;

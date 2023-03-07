@@ -3,6 +3,7 @@ import Experience from './components/Experience';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
+import Techs from './components/Techs';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Sidebar />
       <Header />
       <Experience />
+      <Techs />
     </main>
   );
 }
