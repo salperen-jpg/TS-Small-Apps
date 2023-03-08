@@ -14,7 +14,7 @@ const Footer = () => {
           {socialLinks.map((l) => {
             const { id, icon, link } = l;
             return (
-              <a href={link} key={id} className='social-link'>
+              <a href={link} key={id} className='social-link' target='_blank'>
                 {icon}
               </a>
             );
@@ -56,6 +56,16 @@ const Wrapper = styled.footer`
   }
   .social-link:hover {
     color: var(--white);
+  }
+  @media (min-width: 992px) {
+    .footer-center {
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+    }
+    .social-link {
+      font-size: 2rem;
+    }
   }
 `;
 
