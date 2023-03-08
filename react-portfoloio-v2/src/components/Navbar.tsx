@@ -38,6 +38,11 @@ const Wrapper = styled.nav`
   background: #1c1e31;
   display: flex;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
   .nav-center {
     width: var(--min-width);
     max-width: var(--max-width);
