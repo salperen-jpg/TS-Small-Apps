@@ -34,6 +34,7 @@ const Wrapper = styled.div`
     transition: all 0.3s linear;
     height: 0;
     overflow: hidden;
+    background: #1c1e31;
   }
   .show {
     opacity: 1;

@@ -49,7 +49,11 @@ const Wrapper = styled.nav`
     justify-content: space-between;
     .nav-btn {
       font-size: 1.5rem;
-      background-color: transparent;
+      background: transparent;
+      transition: var(--transition);
+    }
+    .nav-btn:hover {
+      background: linear-gradient(to right, var(--blueish), var(--pinkish));
     }
     h3 {
       text-transform: capitalize;
