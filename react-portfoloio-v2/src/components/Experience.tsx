@@ -122,7 +122,6 @@ const Wrapper = styled.section`
     .btn-container {
       flex-direction: column;
       justify-content: flex-start;
-      /* align-items: flex-start; */
     }
     .btn-container .btn {
       background-color: transparent;

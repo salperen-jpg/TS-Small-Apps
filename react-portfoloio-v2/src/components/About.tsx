@@ -1,24 +1,101 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import profile from '../assets/profile.jpg';
+import Title from './Title';
 const Footer = () => {
   return (
-    <Wrapper>
-      <h1>Footer</h1>
-      <div className='margin'></div>
+    <Wrapper id='About'>
+      <Title title='About me' />
+      <div className='section-center'>
+        <div className='info'>
+          <p>
+            I am a passionate web developer especially interested in building
+            responsive, charming and modern web applications with the
+            technologies in demand in the industry.
+          </p>
+          <button className='btn hire-btn'>hire me</button>
+        </div>
+        <div className='img-container'>
+          <img src={profile} alt='' />
+        </div>
+      </div>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.section`
   position: relative;
-  .margin {
-    min-height: 40vh;
+  .section-center {
+    width: var(--min-width);
+    margin: 0 auto;
+    max-width: var(--max-width);
   }
-  h1 {
-    text-align: center;
+  .info {
+    margin-bottom: 2rem;
+  }
+  p {
+    line-height: 1.75;
+    max-width: 35rem;
+  }
+  .hire-btn {
+    margin-top: 1rem;
+    padding: 0.7rem 1.2rem;
+    transition: all 0.3s linear;
+  }
+  .hire-btn:hover {
+    background: linear-gradient(to right, var(--blueish), var(--pinkish));
+  }
+  @media (min-width: 900px) {
+    .section-center {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      align-items: center;
+    }
+    p {
+      line-height: 2;
+    }
+    img {
+      width: 23rem;
+      height: 25rem;
+      object-fit: cover;
+      border-radius: var(--radius);
+    }
   }
   @media (min-width: 1300px) {
+    /* IMAGE */
+    .img-container {
+      position: relative;
+      background: linear-gradient(to right, var(--blueish), var(--pinkish));
+      opacity: 0.5;
+      transition: var(--transition);
+    }
+    .img-container::after {
+      content: '';
+      position: absolute;
+      top: -1.5rem;
+      right: -1.5rem;
+      width: 100%;
+      height: 100%;
+      border: 5px solid;
+      border-image-source: linear-gradient(
+        to right,
+        var(--blueish),
+        var(--pinkish)
+      );
+      border-image-slice: 3;
+      border-radius: 40px;
+      z-index: -1;
+      transition: var(--transition);
+    }
+    .img-container:hover {
+      opacity: 1;
+    }
+    .img-container:hover::after {
+      top: -1rem;
+      right: -1rem;
+    }
+
+    /* OUTER BORDER */
     &::after {
       content: '';
       position: absolute;

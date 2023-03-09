@@ -10,7 +10,7 @@ function App() {
   return (
     <main>
       <Navbar />
-      <Sidebar />
+      {/* <Sidebar /> */}
       <Header />
       <Experience />
       <Techs />

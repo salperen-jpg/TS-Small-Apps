@@ -14,9 +14,11 @@ const Footer = () => {
           {socialLinks.map((l) => {
             const { id, icon, link } = l;
             return (
-              <a href={link} key={id} className='social-link' target='_blank'>
-                {icon}
-              </a>
+              <li key={id} className='social-link'>
+                <a href={link} target='_blank'>
+                  {icon}
+                </a>
+              </li>
             );
           })}
         </ul>
@@ -50,21 +52,33 @@ const Wrapper = styled.footer`
     display: flex;
     gap: 1rem;
     justify-content: center;
+    align-items: center;
   }
   .social-link {
     font-size: 1.5rem;
   }
-  .social-link:hover {
+  a {
+    display: flex;
+    align-items: center;
+  }
+  a:hover {
     color: var(--white);
   }
+
   @media (min-width: 992px) {
     .footer-center {
       text-align: left;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0;
     }
+
     .social-link {
       font-size: 2rem;
+    }
+    p {
+      margin-bottom: 0;
     }
   }
 `;

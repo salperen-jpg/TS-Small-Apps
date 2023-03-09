@@ -35,6 +35,10 @@ const Wrapper = styled.div`
     height: 0;
     overflow: hidden;
     background: #1c1e31;
+    position: absolute;
+    top: 6rem;
+    left: 0;
+    width: 100%;
   }
   .show {
     opacity: 1;

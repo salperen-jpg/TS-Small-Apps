@@ -20,13 +20,16 @@ const Header = () => {
 };
 
 const Wrapper = styled.header`
-  height: calc(100vh - 5rem);
+  min-height: 100vh;
   display: grid;
   align-items: center;
   .header-center {
     width: var(--min-width);
     max-width: var(--max-width);
     margin: 0 auto;
+  }
+  .underline {
+    margin-inline: 0;
   }
   .header-info {
     h2 {

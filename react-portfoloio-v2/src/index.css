@@ -136,11 +136,15 @@ section {
   cursor: pointer;
 }
 /* UNDERLINE */
+.title {
+  text-align: center;
+  margin-bottom: 5rem;
+}
 .underline {
   width: 15rem;
   height: 4px;
   background: linear-gradient(to right, var(--blueish), var(--pinkish));
-  margin: 1rem 0;
+  margin: 1rem auto;
 }
 .title .underline {
   width: 8rem;

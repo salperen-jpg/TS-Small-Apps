@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { FaBars } from 'react-icons/fa';
 import { MdClose } from 'react-icons/md';
@@ -15,16 +15,22 @@ const Navbar: React.FC = () => {
             {isSidebarOpen ? <MdClose /> : <FaBars />}
           </button>
         </div>
-        <ul className='nav-links'>
-          {NavLinks.map((navlink) => {
-            const { id, text, link } = navlink;
-            return (
-              <li key={id} className='navlink'>
-                <a href={link}>{text}</a>
-              </li>
-            );
-          })}
-        </ul>
+        <div
+          className={
+            isSidebarOpen ? 'nav-links-container show' : 'nav-links-container'
+          }
+        >
+          <ul className='nav-links'>
+            {NavLinks.map((navlink) => {
+              const { id, text, link } = navlink;
+              return (
+                <li key={id} className='navlink'>
+                  <a href={link}>{text}</a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </Wrapper>
   );
@@ -33,7 +39,7 @@ const Navbar: React.FC = () => {
 export default Navbar;
 
 const Wrapper = styled.nav`
-  height: 6rem;
+  padding: 1.5rem 0;
   background: var(--clr-primary-800);
   background: #1c1e31;
   display: flex;
@@ -42,7 +48,7 @@ const Wrapper = styled.nav`
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 2;
+  z-index: 99;
   .nav-center {
     width: var(--min-width);
     max-width: var(--max-width);
@@ -70,8 +76,22 @@ const Wrapper = styled.nav`
       font-family: var(--ff-secondary);
     }
   }
+  .nav-links-container {
+    height: 0;
+    overflow: hidden;
+    transition: var(--transition);
+  }
   .nav-links {
-    display: none;
+    margin-top: 1rem;
+  }
+  .navlink {
+    margin-bottom: 1rem;
+  }
+  .navlink:nth-last-child(1) {
+    margin-bottom: 0;
+  }
+  .show {
+    height: 120px;
   }
   @media screen and (min-width: 992px) {
     .nav-center {
@@ -82,25 +102,34 @@ const Wrapper = styled.nav`
     .nav-btn {
       display: none;
     }
+    .nav-links-container {
+      height: auto !important;
+    }
+
     .nav-links {
       display: flex;
       align-items: center;
       gap: 2rem;
-      li {
+      margin: 0;
+      .navlink {
         position: relative;
+        padding: 0.25rem;
       }
-      li::after {
+      .navlink::after {
         content: '';
         position: absolute;
-        bottom: -4px;
+        bottom: -2px;
         left: 0;
         width: 0;
-        height: 2px;
+        height: 3px;
         background: linear-gradient(to right, var(--blueish), var(--pinkish));
         transition: var(--transition);
       }
-      li:hover::after {
+      .navlink:hover::after {
         width: 100%;
+      }
+      .navlink {
+        margin-bottom: 0;
       }
     }
   }
