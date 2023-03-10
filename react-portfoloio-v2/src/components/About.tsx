@@ -65,7 +65,7 @@ const Wrapper = styled.section`
     /* IMAGE */
     .img-container {
       position: relative;
-      background: linear-gradient(to right, var(--blueish), var(--pinkish));
+      /* background: linear-gradient(to right, var(--blueish), var(--pinkish)); */
       opacity: 0.5;
       transition: var(--transition);
     }
@@ -87,6 +87,7 @@ const Wrapper = styled.section`
       z-index: -1;
       transition: var(--transition);
     }
+
     .img-container:hover {
       opacity: 1;
     }
@@ -101,9 +102,10 @@ const Wrapper = styled.section`
       position: absolute;
       top: 0;
       left: 10%;
-      width: 80%;
+      width: 85%;
       height: 100%;
       margin: 0 auto;
+      border-radius: 10px;
       border-inline-start: 10px solid;
       border-block-start: 10px solid;
       border-image-source: radial-gradient(

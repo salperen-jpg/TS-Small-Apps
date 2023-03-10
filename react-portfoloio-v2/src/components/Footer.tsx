@@ -28,6 +28,7 @@ const Footer = () => {
 };
 
 const Wrapper = styled.footer`
+  margin-top: 30vh;
   padding: 1rem 0;
   background: linear-gradient(to right, var(--blueish), var(--pinkish));
 

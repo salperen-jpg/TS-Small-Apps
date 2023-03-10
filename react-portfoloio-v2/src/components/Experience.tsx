@@ -143,7 +143,7 @@ const Wrapper = styled.section`
       position: absolute;
       top: 0;
       left: 10%;
-      width: 80%;
+      width: 85%;
       height: 100%;
       margin: 0 auto;
       border-inline-start: 10px solid;

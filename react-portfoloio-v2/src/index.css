@@ -48,7 +48,7 @@ html {
   --spacing: 0.1rem;
   --radius: 5px;
   --min-width: 90vw;
-  --max-width: 1100px;
+  --max-width: 1000px;
   /* font */
   --ff-primary: 'Space Grotesk', sans-serif;
   --ff-secondary: 'Pacifico', cursive;
