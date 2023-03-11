@@ -4,14 +4,14 @@ import Title from './Title';
 import projectList from '../utils/ProjectList';
 const Projects = () => {
   return (
-    <Wrapper>
+    <Wrapper id='Projects'>
       <Title title='Projects' />
       <div className='section-center project-list'>
         {projectList.map((project) => {
           const { id, title, techs, image } = project;
           return (
             <article key={id} className={`project project-${id}`}>
-              <img src={image} className='project-img' alt='' />
+              <img src={image} className='project-img' alt={title} />
               <div className='info'>
                 <h4>{title}</h4>
                 <div className='techs'>
@@ -40,8 +40,6 @@ const Wrapper = styled.section`
     display: grid;
     gap: 3rem;
   }
-  .project-list {
-  }
   .project {
     position: relative;
     background: var(--clr-primary-500);
@@ -65,9 +63,8 @@ const Wrapper = styled.section`
     opacity: 1;
   }
   .project-img {
-    transition: var(--transition);
-    width: 100%;
-    height: 100%;
+    transition: all 0.3s linear;
+    max-height: 17rem;
     object-fit: cover;
   }
   .project:hover .project-img {
@@ -102,10 +99,16 @@ const Wrapper = styled.section`
     border-radius: var(--radius);
     color: var(--grey-900);
   }
-
-  @media (min-width: 900px) {
+  @media (min-width: 576px) {
     .section-center {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 992px) {
+    .section-center {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 200px 200px;
       grid-template-areas:
         'a b b'
         'a c d';
@@ -122,11 +125,13 @@ const Wrapper = styled.section`
     .project-4 {
       grid-area: d;
     }
-  }
-  .project-list {
-  }
-  .project {
-    height: 100%;
+    .project {
+      height: 100%;
+    }
+    .project-img {
+      max-height: max-content;
+      height: 100%;
+    }
   }
 `;
 
