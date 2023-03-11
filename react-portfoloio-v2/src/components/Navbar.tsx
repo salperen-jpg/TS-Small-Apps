@@ -24,7 +24,7 @@ const Navbar: React.FC = () => {
             {NavLinks.map((navlink) => {
               const { id, text, link } = navlink;
               return (
-                <li key={id} className='navlink'>
+                <li key={id} className='navlink' onClick={toggleSidebar}>
                   <a href={link}>{text}</a>
                 </li>
               );
@@ -105,7 +105,6 @@ const Wrapper = styled.nav`
     .nav-links-container {
       height: auto !important;
     }
-
     .nav-links {
       display: flex;
       align-items: center;
@@ -113,7 +112,7 @@ const Wrapper = styled.nav`
       margin: 0;
       .navlink {
         position: relative;
-        padding: 0.25rem;
+        padding: 0.25rem 0;
       }
       .navlink::after {
         content: '';
@@ -121,7 +120,7 @@ const Wrapper = styled.nav`
         bottom: -2px;
         left: 0;
         width: 0;
-        height: 3px;
+        height: 4px;
         background: linear-gradient(to right, var(--blueish), var(--pinkish));
         transition: var(--transition);
       }

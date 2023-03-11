@@ -6,16 +6,16 @@ Fonts
 Resetting
 */
 
-/* Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
-}
 *,
 ::after,
 ::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -119,7 +119,7 @@ h4 {
 }
 
 section {
-  padding: 5rem 0;
+  padding: 12rem 0;
 }
 
 .btn {

@@ -49,7 +49,6 @@ const Wrapper = styled.section`
     .section-center {
       display: grid;
       grid-template-columns: 2fr 1fr;
-      align-items: center;
     }
     p {
       line-height: 2;
@@ -65,7 +64,6 @@ const Wrapper = styled.section`
     /* IMAGE */
     .img-container {
       position: relative;
-      /* background: linear-gradient(to right, var(--blueish), var(--pinkish)); */
       opacity: 0.5;
       transition: var(--transition);
     }
