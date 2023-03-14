@@ -1,8 +1,9 @@
-import React from 'react';
 import styled from 'styled-components';
 import profile from '../assets/profile.jpg';
 import Title from './Title';
-const Footer = () => {
+import { FaAngleDoubleRight } from 'react-icons/fa';
+import Techs from '../utils/Techs';
+const Footer: React.FC = () => {
   return (
     <Wrapper id='About'>
       <Title title='About me' />
@@ -11,8 +12,20 @@ const Footer = () => {
           <p>
             I am a passionate web developer especially interested in building
             responsive, charming and modern web applications with the
-            technologies in demand in the industry.
+            technologies in demand in the industry. The recent technologies I
+            worked with :
           </p>
+          <div className='techs'>
+            {Techs.map((tech) => {
+              const { id, text } = tech;
+              return (
+                <article key={id} className='tech'>
+                  <FaAngleDoubleRight className='icon' />
+                  {text}
+                </article>
+              );
+            })}
+          </div>
           <button className='btn hire-btn'>hire me</button>
         </div>
         <div className='img-container'>
@@ -37,8 +50,23 @@ const Wrapper = styled.section`
     line-height: 1.75;
     max-width: 35rem;
   }
+  .techs {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    .tech {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .icon {
+      font-size: 1.2rem;
+      color: var(--pinkish);
+    }
+  }
   .hire-btn {
-    margin-top: 1rem;
+    margin-top: 2rem;
     padding: 0.7rem 1.2rem;
     transition: all 0.3s linear;
   }

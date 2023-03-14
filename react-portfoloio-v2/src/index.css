@@ -139,6 +139,7 @@ section {
 .title {
   text-align: center;
   margin-bottom: 5rem;
+  margin-top: -5rem;
 }
 .underline {
   width: 15rem;
@@ -149,17 +150,3 @@ section {
 .title .underline {
   width: 8rem;
 }
-
-/* h1 {
-  background: linear-gradient(68.97deg, #101023 24.3%, #192155 76.31%);
-  background-image: linear-gradient(
-    to left,
-    rgba(45, 39, 223, 1) 0%,
-    rgba(203, 35, 118, 1) 100%
-  );
-  background-image: linear-gradient(to left, red, blue, green);
-  background-size: cover;
-  background-clip: text;
-  color: transparent;
-  width: 500px;
-} */

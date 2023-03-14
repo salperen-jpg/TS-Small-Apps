@@ -28,6 +28,15 @@ const Projects = () => {
           );
         })}
       </div>
+      <div className='projects-link'>
+        <a
+          href='https://github.com/salperen-jpg'
+          className='btn projects-btn'
+          target='_blank'
+        >
+          See more
+        </a>
+      </div>
     </Wrapper>
   );
 };
@@ -74,7 +83,7 @@ const Wrapper = styled.section`
     content: '';
     position: absolute;
     inset: 0;
-    border: 5px solid;
+    border: 5px solid transparent;
   }
   .project:hover::after {
     border-image-source: linear-gradient(
@@ -99,7 +108,23 @@ const Wrapper = styled.section`
     border-radius: var(--radius);
     color: var(--grey-900);
   }
-  @media (min-width: 576px) {
+  .projects-link {
+    text-align: center;
+  }
+  .projects-btn {
+    text-align: center;
+    margin: 5rem auto;
+    padding: 1rem 1.75rem;
+    border-radius: 0;
+    font-family: var(--ff-secondary);
+    letter-spacing: 0.1rem;
+    outline: 2px solid var(--white);
+    outline-offset: 0.5rem;
+  }
+  .projects-btn:hover {
+    background: linear-gradient(to right, var(--blueish), var(--pinkish));
+  }
+  @media (min-width: 650px) {
     .section-center {
       grid-template-columns: repeat(2, 1fr);
     }

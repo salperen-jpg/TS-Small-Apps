@@ -82,16 +82,20 @@ const Wrapper = styled.nav`
     transition: var(--transition);
   }
   .nav-links {
-    margin-top: 1rem;
+    margin-top: 2rem;
   }
   .navlink {
     margin-bottom: 1rem;
   }
+  .navlink:hover a {
+    color: var(--pinkish);
+  }
+
   .navlink:nth-last-child(1) {
     margin-bottom: 0;
   }
   .show {
-    height: 120px;
+    height: 136px;
   }
   @media screen and (min-width: 992px) {
     .nav-center {
@@ -130,6 +134,12 @@ const Wrapper = styled.nav`
       .navlink {
         margin-bottom: 0;
       }
+    }
+    .navlink a {
+      transition: var(--transition);
+    }
+    .navlink:hover a {
+      color: var(--grey-300);
     }
   }
 `;
