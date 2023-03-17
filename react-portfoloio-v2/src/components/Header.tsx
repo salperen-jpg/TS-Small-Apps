@@ -1,5 +1,3 @@
-import React from 'react';
-
 import styled from 'styled-components';
 
 const Header = () => {
@@ -19,7 +17,9 @@ const Header = () => {
             </a>
           </div>
         </div>
-        <div className='header-img'></div>
+        <div className='header-img'>
+          <img src='/header2.svg' alt='header-img' />
+        </div>
       </div>
     </Wrapper>
   );
@@ -71,11 +71,6 @@ const Wrapper = styled.header`
 
     .header-img {
       display: block;
-      height: 400px;
-      width: 400px;
-      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),
-        url('header.jpg') center/cover no-repeat;
-      border-radius: 50%;
     }
   }
 `;
