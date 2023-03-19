@@ -115,6 +115,9 @@ section {
   justify-content: center;
   gap: 1rem;
 }
+.active {
+  background-color: var(--clr-primary-100);
+}
 .menu-center {
   width: var(--min-width);
   margin: 0 auto;
