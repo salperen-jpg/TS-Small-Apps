@@ -22,7 +22,6 @@ export const reducer = (state: typeof initialState, action: ActionTypes) => {
   }
   if (action.type === REDUCER_ACTION_TYPE.HANDLE_PAGE) {
     const { val } = action.payload;
-    console.log(val);
     const { page } = state;
     let newPage;
     if (val === 'inc') {
@@ -37,8 +36,15 @@ export const reducer = (state: typeof initialState, action: ActionTypes) => {
         newPage = state.numberOfPages - 1;
       }
     }
-    console.log(newPage);
     return { ...state, page: newPage };
+  }
+  if (REDUCER_ACTION_TYPE.REMOVE_NEWS) {
+    return {
+      ...state,
+      hits: state.hits.filter(
+        (single) => single.objectID !== action.payload.id
+      ),
+    };
   }
   throw new Error(`The action type (${action.type})  is not found`);
 };

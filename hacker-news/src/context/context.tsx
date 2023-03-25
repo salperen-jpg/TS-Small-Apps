@@ -2,7 +2,7 @@ import { useContext, createContext, useReducer, useEffect } from 'react';
 import { reducer } from '../reducer/reducer';
 import { API_ENDPOINT } from '../utils/constants';
 import axios from 'axios';
-interface NewContextType {
+type NewContextType = {
   hits: [];
   query: string;
   handleQuery: (v: string) => void;
@@ -10,7 +10,8 @@ interface NewContextType {
   page: number;
   numberOfPages: number;
   handlePage: (a: string) => void;
-}
+  removeFromUI: (id: string) => void;
+};
 
 interface Children {
   children: React.ReactNode;
@@ -21,6 +22,7 @@ export const enum REDUCER_ACTION_TYPE {
   SET_NEWS = 'SET_NEWS',
   SET_QUERY = 'SET_QUERY',
   HANDLE_PAGE = 'HANDLE_PAGE',
+  REMOVE_NEWS = 'REMOVE_NEWS',
 }
 
 export interface ActionTypes {
@@ -45,6 +47,7 @@ const NewsContext = createContext<NewContextType>({
   numberOfPages: 0,
   handleQuery: () => {},
   handlePage: () => {},
+  removeFromUI: (id: string) => {},
 });
 
 export const AppProvider = ({ children }: Children) => {
@@ -71,8 +74,11 @@ export const AppProvider = ({ children }: Children) => {
   };
 
   const handlePage = (val: string) => {
-    console.log(val);
     dispatch({ type: REDUCER_ACTION_TYPE.HANDLE_PAGE, payload: { val } });
+  };
+
+  const removeFromUI = (id: string) => {
+    dispatch({ type: REDUCER_ACTION_TYPE.REMOVE_NEWS, payload: { id } });
   };
 
   useEffect(() => {
@@ -80,7 +86,9 @@ export const AppProvider = ({ children }: Children) => {
   }, [state.query, state.page]);
 
   return (
-    <NewsContext.Provider value={{ ...state, handleQuery, handlePage }}>
+    <NewsContext.Provider
+      value={{ ...state, handleQuery, handlePage, removeFromUI }}
+    >
       {children}
     </NewsContext.Provider>
   );
