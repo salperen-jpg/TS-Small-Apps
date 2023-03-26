@@ -3,7 +3,7 @@ import { useNewsContext } from '../context/context';
 const SearchForm = () => {
   const { query, handleQuery } = useNewsContext();
   return (
-    <form>
+    <form onSubmit={(e) => e.preventDefault()}>
       <div className='form-row'>
         <input
           type='text'
