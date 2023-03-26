@@ -25,15 +25,33 @@ export const enum REDUCER_ACTION_TYPE {
   REMOVE_NEWS = 'REMOVE_NEWS',
 }
 
+type SetNews = {
+  hits: [];
+  nbPages: number;
+};
+
 export interface ActionTypes {
-  type: REDUCER_ACTION_TYPE;
-  payload?: object;
+  // type: qREDUCER_ACTION_TYPE;
+  type:
+    | 'SET_LOADING'
+    | 'SET_NEWS'
+    | 'SET_QUERY'
+    | 'HANDLE_PAGE'
+    | 'REMOVE_NEWS';
+  payload?: SetNews | string | number;
+}
+
+export interface NewsState {
+  query: string;
+  hits: [];
+  isLoading: boolean;
+  page: number;
+  numberOfPages: number;
 }
 
 export const initialState = {
   query: 'React',
   hits: [],
-  numberOfHits: 0,
   isLoading: false,
   page: 0,
   numberOfPages: 0,
@@ -47,7 +65,7 @@ const NewsContext = createContext<NewContextType>({
   numberOfPages: 0,
   handleQuery: () => {},
   handlePage: () => {},
-  removeFromUI: (id: string) => {},
+  removeFromUI: () => {},
 });
 
 export const AppProvider = ({ children }: Children) => {
@@ -59,10 +77,10 @@ export const AppProvider = ({ children }: Children) => {
       const { data } = await axios(
         `${API_ENDPOINT}search?query=${query}&page=${state.page}`
       );
-      const { hits, nbHits, nbPages } = data;
+      const { hits, nbPages } = data;
       dispatch({
         type: REDUCER_ACTION_TYPE.SET_NEWS,
-        payload: { hits, nbHits, nbPages },
+        payload: { hits, nbPages },
       });
     } catch (error) {
       console.log(error);
@@ -70,15 +88,15 @@ export const AppProvider = ({ children }: Children) => {
   };
 
   const handleQuery = (val: string) => {
-    dispatch({ type: REDUCER_ACTION_TYPE.SET_QUERY, payload: { val } });
+    dispatch({ type: REDUCER_ACTION_TYPE.SET_QUERY, payload: val });
   };
 
   const handlePage = (val: string) => {
-    dispatch({ type: REDUCER_ACTION_TYPE.HANDLE_PAGE, payload: { val } });
+    dispatch({ type: REDUCER_ACTION_TYPE.HANDLE_PAGE, payload: val });
   };
 
   const removeFromUI = (id: string) => {
-    dispatch({ type: REDUCER_ACTION_TYPE.REMOVE_NEWS, payload: { id } });
+    dispatch({ type: REDUCER_ACTION_TYPE.REMOVE_NEWS, payload: id });
   };
 
   useEffect(() => {
