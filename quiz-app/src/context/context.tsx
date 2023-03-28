@@ -7,7 +7,7 @@ interface Question {
   difficulty: string;
   question: string;
   correct_answer: string;
-  incorrect_answer: string[];
+  incorrect_answers: string[];
 }
 
 interface ContextProps {
@@ -15,6 +15,10 @@ interface ContextProps {
   isFormShown: boolean;
   questions: Question[];
   isError: boolean;
+  index: number;
+  correct: number;
+  nextQuestion: () => void;
+  checkAnswer: (a: boolean) => void;
 }
 
 const QuizContext = createContext<ContextProps>({
@@ -22,6 +26,10 @@ const QuizContext = createContext<ContextProps>({
   isFormShown: true,
   questions: [],
   isError: false,
+  index: 0,
+  correct: 0,
+  nextQuestion() {},
+  checkAnswer() {},
 });
 
 interface ChildrenProp {
@@ -33,6 +41,8 @@ export const AppProvider = ({ children }: ChildrenProp) => {
   const [isFormShown, setIsFormShown] = useState(true);
   const [questions, setQuestions] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [index, setIndex] = useState(0);
+  const [correct, setCorrect] = useState(0);
   const url =
     'https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple';
 
@@ -55,13 +65,37 @@ export const AppProvider = ({ children }: ChildrenProp) => {
     }
   };
 
+  const nextQuestion = () => {
+    setIndex((oldState) => {
+      return oldState + 1;
+    });
+  };
+
+  const checkAnswer = (opt: boolean) => {
+    if (opt) {
+      setCorrect((oldState) => {
+        return oldState + 1;
+      });
+    }
+    nextQuestion();
+  };
+
   React.useEffect(() => {
     fetchQuestions(url);
   }, []);
 
   return (
     <QuizContext.Provider
-      value={{ isLoading, isFormShown, questions, isError }}
+      value={{
+        nextQuestion,
+        correct,
+        index,
+        isLoading,
+        isFormShown,
+        questions,
+        isError,
+        checkAnswer,
+      }}
     >
       {children}
     </QuizContext.Provider>
