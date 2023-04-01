@@ -1,5 +1,16 @@
 import React, { useContext, createContext, useState } from 'react';
 import axios from 'axios';
+import { API_ENDPOINT } from '../utils/constants';
+
+interface Map {
+  [key: string]: string;
+}
+
+const table: Map = {
+  history: '23',
+  sports: '21',
+  politics: '24',
+};
 
 interface Question {
   category: string;
@@ -19,6 +30,18 @@ interface ContextProps {
   correct: number;
   nextQuestion: () => void;
   checkAnswer: (a: boolean) => void;
+  closeModal: () => void;
+  isModalOpen: boolean;
+  quiz: {
+    amount: string;
+    category: string;
+    difficulty: string;
+  };
+  handleChange: (
+    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
+  ) => void;
+  handleSubmit: (e: React.FormEvent) => void;
+  fetchQuestions: (url: string) => void;
 }
 
 const QuizContext = createContext<ContextProps>({
@@ -30,6 +53,16 @@ const QuizContext = createContext<ContextProps>({
   correct: 0,
   nextQuestion() {},
   checkAnswer() {},
+  closeModal() {},
+  isModalOpen: false,
+  quiz: {
+    amount: '20',
+    category: 'sports',
+    difficulty: 'easy',
+  },
+  handleChange: () => {},
+  fetchQuestions: () => {},
+  handleSubmit: () => {},
 });
 
 interface ChildrenProp {
@@ -43,10 +76,17 @@ export const AppProvider = ({ children }: ChildrenProp) => {
   const [isError, setIsError] = useState(false);
   const [index, setIndex] = useState(0);
   const [correct, setCorrect] = useState(0);
-  const url =
-    'https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple';
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [quiz, setQuiz] = useState({
+    amount: '10',
+    category: 'sports',
+    difficulty: 'easy',
+  });
+  // const url =
+  //   'https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple';
 
   const fetchQuestions = async (url: string) => {
+    setIsLoading(true);
     try {
       const {
         data: { results },
@@ -67,8 +107,23 @@ export const AppProvider = ({ children }: ChildrenProp) => {
 
   const nextQuestion = () => {
     setIndex((oldState) => {
-      return oldState + 1;
+      const newIndex = oldState + 1;
+      if (newIndex > questions.length - 1) {
+        openModal();
+        return 0;
+      } else {
+        return oldState + 1;
+      }
     });
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setIsFormShown(true);
+    setCorrect(0);
   };
 
   const checkAnswer = (opt: boolean) => {
@@ -79,14 +134,26 @@ export const AppProvider = ({ children }: ChildrenProp) => {
     }
     nextQuestion();
   };
+  const handleChange = (
+    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
+  ) => {
+    setQuiz({ ...quiz, [e.target.name]: e.target.value });
+  };
 
-  React.useEffect(() => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('fetched');
+    // https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple
+    const url = `${API_ENDPOINT}amount=${quiz.amount}&category=${
+      table[quiz.category]
+    }&difficulty=easy&type=multiple`;
     fetchQuestions(url);
-  }, []);
+  };
 
   return (
     <QuizContext.Provider
       value={{
+        isModalOpen,
         nextQuestion,
         correct,
         index,
@@ -95,6 +162,11 @@ export const AppProvider = ({ children }: ChildrenProp) => {
         questions,
         isError,
         checkAnswer,
+        closeModal,
+        quiz,
+        handleChange,
+        fetchQuestions,
+        handleSubmit,
       }}
     >
       {children}

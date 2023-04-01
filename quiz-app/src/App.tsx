@@ -3,19 +3,19 @@ import reactLogo from './assets/react.svg';
 import './App.css';
 import { useQuizContext } from './context/context';
 import Form from './components/Form';
+import Modal from './components/Modal';
+import Timer from './components/Timer';
 
 function App() {
-  const {
-    isLoading,
-    isFormShown,
-    questions,
-    correct,
-    index,
-    nextQuestion,
-    checkAnswer,
-  } = useQuizContext();
+  const { isFormShown, questions, correct, index, checkAnswer } =
+    useQuizContext();
+
   if (isFormShown) {
-    return <Form />;
+    return (
+      <main>
+        <Form />
+      </main>
+    );
   }
 
   const { category, difficulty, question, incorrect_answers, correct_answer } =
@@ -24,9 +24,13 @@ function App() {
   const options = [...incorrect_answers, correct_answer];
   return (
     <main>
-      <div className='question-display'>
+      <Modal />
+      {/* <Timer /> */}
+      <div className='container question-display'>
         <div className='header'>
-          <h4>{category}</h4>
+          <h4 className='category'>
+            {category} / {difficulty}
+          </h4>
           <h4>
             your score : {correct} / {index}
           </h4>
@@ -38,6 +42,7 @@ function App() {
               return (
                 <button
                   type='button'
+                  className='btn answer-btn'
                   key={index}
                   dangerouslySetInnerHTML={{ __html: option }}
                   onClick={() => checkAnswer(option === correct_answer)}
@@ -45,6 +50,9 @@ function App() {
               );
             })}
           </div>
+        </div>
+        <div className='next'>
+          <button className='btn next-btn'>next question</button>
         </div>
       </div>
     </main>
