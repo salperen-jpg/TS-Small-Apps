@@ -65,6 +65,11 @@ const Form = () => {
             })}
           </select>
         </div>
+        {isError && (
+          <div className='error'>
+            <span>Can not start it , please try other values.</span>
+          </div>
+        )}
         <button type='submit' className='btn submit-btn' onClick={handleSubmit}>
           {isLoading ? <div className='loading'></div> : 'Start'}
         </button>

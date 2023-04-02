@@ -1,6 +1,11 @@
 import React, { useContext, createContext, useState } from 'react';
 import axios from 'axios';
 import { API_ENDPOINT } from '../utils/constants';
+import {
+  ContextProps,
+  initialContextValues,
+  ChildrenProp,
+} from '../utils/Context.Models';
 
 interface Map {
   [key: string]: string;
@@ -12,62 +17,7 @@ const table: Map = {
   politics: '24',
 };
 
-interface Question {
-  category: string;
-  type: string;
-  difficulty: string;
-  question: string;
-  correct_answer: string;
-  incorrect_answers: string[];
-}
-
-interface ContextProps {
-  isLoading: boolean;
-  isFormShown: boolean;
-  questions: Question[];
-  isError: boolean;
-  index: number;
-  correct: number;
-  nextQuestion: () => void;
-  checkAnswer: (a: boolean) => void;
-  closeModal: () => void;
-  isModalOpen: boolean;
-  quiz: {
-    amount: string;
-    category: string;
-    difficulty: string;
-  };
-  handleChange: (
-    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
-  ) => void;
-  handleSubmit: (e: React.FormEvent) => void;
-  fetchQuestions: (url: string) => void;
-}
-
-const QuizContext = createContext<ContextProps>({
-  isLoading: false,
-  isFormShown: true,
-  questions: [],
-  isError: false,
-  index: 0,
-  correct: 0,
-  nextQuestion() {},
-  checkAnswer() {},
-  closeModal() {},
-  isModalOpen: false,
-  quiz: {
-    amount: '20',
-    category: 'sports',
-    difficulty: 'easy',
-  },
-  handleChange: () => {},
-  fetchQuestions: () => {},
-  handleSubmit: () => {},
-});
-
-interface ChildrenProp {
-  children: React.ReactNode;
-}
+const QuizContext = createContext<ContextProps>(initialContextValues);
 
 export const AppProvider = ({ children }: ChildrenProp) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -82,8 +32,6 @@ export const AppProvider = ({ children }: ChildrenProp) => {
     category: 'sports',
     difficulty: 'easy',
   });
-  // const url =
-  //   'https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple';
 
   const fetchQuestions = async (url: string) => {
     setIsLoading(true);
@@ -91,10 +39,10 @@ export const AppProvider = ({ children }: ChildrenProp) => {
       const {
         data: { results },
       } = await axios(url);
-      console.log(results);
       if (results.length > 0) {
         setQuestions(results);
         setIsLoading(false);
+        setIsError(false);
         setIsFormShown(false);
       } else {
         setIsError(true);
@@ -142,8 +90,6 @@ export const AppProvider = ({ children }: ChildrenProp) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('fetched');
-    // https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple
     const url = `${API_ENDPOINT}amount=${quiz.amount}&category=${
       table[quiz.category]
     }&difficulty=easy&type=multiple`;

@@ -1,10 +1,13 @@
 import React from 'react';
 import { useQuizContext } from '../context/context';
-
+import { FaStopwatch20 } from 'react-icons/fa';
 const Timer = () => {
-  const { nextQuestion } = useQuizContext();
+  const { nextQuestion, index } = useQuizContext();
+  const [currentSec, setCurrentSec] = React.useState(20);
 
-  const [currentSec, setCurrentSec] = React.useState(10);
+  React.useEffect(() => {
+    setCurrentSec(20);
+  }, [index]);
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -12,13 +15,18 @@ const Timer = () => {
     }, 1000);
     if (currentSec < 0) {
       nextQuestion();
-      setCurrentSec(10);
+      setCurrentSec(20);
     }
-    console.log(currentSec);
+    console.log(interval);
     return () => clearInterval(interval);
   }, [currentSec]);
 
-  return <h1>00:{currentSec >= 10 ? currentSec : `0${currentSec}`}</h1>;
+  return (
+    <div className='timer'>
+      <FaStopwatch20 />
+      <h1>00:{currentSec >= 10 ? currentSec : `0${currentSec}`}</h1>
+    </div>
+  );
 };
 
 export default Timer;
