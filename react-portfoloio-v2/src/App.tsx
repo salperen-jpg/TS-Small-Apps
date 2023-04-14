@@ -3,17 +3,17 @@ import About from './components/About';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Projects from './components/Projects';
 import Projects2 from './components/Projects2';
+import Socials from './components/Socials';
 
 function App() {
   return (
     <main>
       <Navbar />
       <Header />
+      <Socials />
       <Experience />
       <About />
-      <Projects />
       <Projects2 />
       <Footer />
     </main>

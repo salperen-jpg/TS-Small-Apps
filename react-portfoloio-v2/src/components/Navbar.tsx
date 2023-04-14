@@ -6,6 +6,18 @@ import { NavLinks } from '../utils/NavLinks';
 import { usePortfolioContext } from '../context';
 const Navbar: React.FC = () => {
   const { isSidebarOpen, toggleSidebar } = usePortfolioContext();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const linkRef = useRef<HTMLUListElement | null>(null);
+
+  React.useEffect(() => {
+    const getDiv = linkRef.current?.getBoundingClientRect();
+    if (isSidebarOpen) {
+      containerRef.current!.style.height = `${getDiv?.height}px`;
+    } else {
+      containerRef.current!.style.height = `0px`;
+    }
+  }, [isSidebarOpen]);
+
   return (
     <Wrapper>
       <div className='nav-center'>
@@ -15,12 +27,8 @@ const Navbar: React.FC = () => {
             {isSidebarOpen ? <MdClose /> : <FaBars />}
           </button>
         </div>
-        <div
-          className={
-            isSidebarOpen ? 'nav-links-container show' : 'nav-links-container'
-          }
-        >
-          <ul className='nav-links'>
+        <div className='nav-links-container' ref={containerRef}>
+          <ul className='nav-links' ref={linkRef}>
             {NavLinks.map((navlink) => {
               const { id, text, link } = navlink;
               return (
@@ -39,7 +47,7 @@ const Navbar: React.FC = () => {
 export default Navbar;
 
 const Wrapper = styled.nav`
-  padding: 1.5rem 0;
+  padding: 1.25rem 0;
   background: var(--clr-primary-800);
   background: #1c1e31;
   display: flex;
@@ -58,6 +66,7 @@ const Wrapper = styled.nav`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    /* margin-bottom: 2rem; */
     .nav-btn {
       font-size: 1.5rem;
       background: transparent;
@@ -77,12 +86,12 @@ const Wrapper = styled.nav`
     }
   }
   .nav-links-container {
-    height: 0;
     overflow: hidden;
     transition: var(--transition);
+    height: 0;
   }
   .nav-links {
-    margin-top: 2rem;
+    padding-top: 1.25rem;
   }
   .navlink {
     margin-bottom: 1rem;
@@ -110,6 +119,7 @@ const Wrapper = styled.nav`
       height: auto !important;
     }
     .nav-links {
+      padding-top: 0;
       display: flex;
       align-items: center;
       gap: 2rem;

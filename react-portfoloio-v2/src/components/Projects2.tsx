@@ -26,8 +26,11 @@ const Projects2 = () => {
                 </div>
               </div>
               <div className='btn-container'>
-                <a href={live} className='btn live-btn'>
+                <a href={live} className='btn' target='_blank'>
                   live
+                </a>
+                <a href={live} className='btn' target='_blank'>
+                  source code
                 </a>
               </div>
             </article>
@@ -74,8 +77,15 @@ const Wrapper = styled.section`
     border-radius: inherit;
     animation: rotation 20s linear infinite;
   }
-  .card::after {
-    filter: blur(5rem);
+  @media (min-width: 900px) {
+    .project::after,
+    .project::before {
+      inset: -1rem;
+    }
+  }
+  .card::before,
+  .card::before {
+    filter: blur(10rem);
   }
   @property --gradient-angle {
     syntax: '<angle>';
@@ -125,8 +135,12 @@ const Wrapper = styled.section`
     display: flex;
     justify-content: center;
     gap: 1rem;
-    .live-btn {
-      background: linear-gradient(to right, var(--blueish), var(--pinkish));
+
+    .btn {
+      background: var(--grey-700);
+    }
+    .btn:hover {
+      background: rgba(0, 0, 0, 0.1);
     }
   }
   .projects-link {

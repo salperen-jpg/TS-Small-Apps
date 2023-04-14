@@ -44,7 +44,7 @@ const Wrapper = styled.section`
     max-width: var(--max-width);
   }
   .info {
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
   }
   p {
     line-height: 1.75;
