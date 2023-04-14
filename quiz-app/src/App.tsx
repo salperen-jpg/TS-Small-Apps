@@ -26,8 +26,7 @@ function App() {
     );
   }
 
-  const { category, difficulty, question, incorrect_answers, correct_answer } =
-    questions[index];
+  const { question, incorrect_answers, correct_answer } = questions[index];
 
   const options = [...incorrect_answers];
 
