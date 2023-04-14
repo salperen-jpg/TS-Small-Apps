@@ -56,31 +56,33 @@ const Wrapper = styled.section`
     max-width: var(--max-width);
     margin: 0 auto;
     display: grid;
-    gap: 7rem 13rem;
+    gap: 7rem 8rem;
   }
   .project {
     position: relative;
     border-radius: var(--radius);
     background: var(--clr-primary-500);
   }
-  .project::after,
-  .project::before {
-    content: '';
-    position: absolute;
-    inset: -0.5rem;
-    z-index: -1;
-    background: conic-gradient(
-      from var(--gradient-angle),
-      var(--blueish),
-      var(--pinkish)
-    );
-    border-radius: inherit;
-    animation: rotation 20s linear infinite;
+  @media (min-width: 900px) {
+    .project::after,
+    .project::before {
+      content: '';
+      position: absolute;
+      inset: -0.5rem;
+      z-index: -1;
+      background: conic-gradient(
+        from var(--gradient-angle),
+        var(--blueish),
+        var(--pinkish)
+      );
+      border-radius: inherit;
+      animation: rotation 20s linear infinite;
+    }
   }
   @media (min-width: 900px) {
     .project::after,
     .project::before {
-      inset: -1rem;
+      inset: -0.6rem;
     }
   }
   .card::before,

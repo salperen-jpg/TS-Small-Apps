@@ -66,7 +66,6 @@ const Wrapper = styled.nav`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* margin-bottom: 2rem; */
     .nav-btn {
       font-size: 1.5rem;
       background: transparent;
