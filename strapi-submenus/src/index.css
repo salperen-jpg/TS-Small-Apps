@@ -133,10 +133,12 @@ nav {
   display: grid;
   place-items: center;
   opacity: 0;
+  transform: scale(0);
   transition: all 0.3s linear;
 }
 .show {
   opacity: 1;
+  transform: scale(1);
 }
 .sidebar-content {
   width: 90vw;
@@ -147,9 +149,9 @@ nav {
   position: relative;
 }
 .close-btn {
-  position: fixed;
-  top: 1.5rem;
-  right: 2rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
   padding: 0;
 }
 .close-btn svg {
