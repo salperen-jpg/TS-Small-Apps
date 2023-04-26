@@ -55,6 +55,7 @@ a {
   border-radius: var(--radius);
   border: transparent;
   cursor: pointer;
+  font-family: var(--font);
 }
 
 /* more to come */
@@ -78,7 +79,7 @@ nav {
   background-color: #121180;
 }
 .sidebar-btn {
-  padding: 0.75rem 0.75rem;
+  padding: 0.5rem 0.5rem;
 }
 .sidebar-btn:hover {
   padding: 0.8rem 0.8rem;
@@ -87,7 +88,7 @@ nav {
   font-size: 1.2rem;
 }
 .logo {
-  width: 8rem;
+  width: 6rem;
 }
 
 .nav-links {
@@ -142,7 +143,7 @@ nav {
 }
 .sidebar-content {
   width: 90vw;
-  height: 96%;
+  height: 95%;
   background-color: #fff;
   border-radius: 15px;
   padding: 4rem 2rem;
@@ -180,4 +181,105 @@ nav {
   text-transform: capitalize;
   color: #5e709d;
   font-size: 0.875rem;
+}
+@media screen and (min-width: 900px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+/* HERO */
+.hero {
+  min-height: calc(100vh - 5rem);
+  padding-top: 2rem;
+}
+.section-center {
+  width: var(--min-Width);
+  max-width: var(--max-Width);
+  margin: 0 auto;
+}
+.hero-header {
+  text-align: center;
+  font-size: 0.875rem;
+  margin-bottom: 2rem;
+}
+.hero-header p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+.hero-header small {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+.hero-header .new {
+  background-color: #8c4bff;
+  padding: 0.3rem;
+  text-transform: uppercase;
+  border-radius: 0.5rem;
+}
+.learn-more {
+  color: #8c4bff;
+}
+.hero-title {
+  font-size: 2.25rem;
+  color: #fff;
+  text-transform: capitalize;
+  display: block;
+  margin-block: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.exp {
+  max-width: 23rem;
+  line-height: 1.75;
+}
+@media screen and (min-width: 700px) {
+  .information {
+    text-align: center;
+  }
+  .exp {
+    margin: 0 auto;
+  }
+}
+
+/* CLIPBOARD */
+.clipboard-container {
+  max-width: 27rem;
+  margin: 0 auto;
+}
+.clipboard {
+  background-color: #040a44;
+  margin-top: 2rem;
+  font-size: 0.725rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.clipboard-btn {
+  background-color: transparent;
+  color: #fff;
+}
+.clipboard-btn svg {
+  font-size: 1.15rem;
+}
+.btn-container {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: 1rem;
+}
+.btn-container .btn {
+  padding: 1rem;
+}
+.btn-container > button {
+  background-color: #8c4bff;
+  color: #fff;
+}
+.btn-container button:nth-child(2) {
+  background-color: #fff;
+  color: #8c4bff;
 }

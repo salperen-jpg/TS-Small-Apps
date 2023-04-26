@@ -15,7 +15,7 @@ const StrapiContext = createContext<ContextProp>({
 });
 
 export const AppProvider = ({ children }: ChildrenProp) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
