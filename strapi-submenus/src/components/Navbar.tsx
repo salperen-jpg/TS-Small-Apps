@@ -4,8 +4,15 @@ import data from '../data';
 import { useStrapiContext } from '../Context';
 const Navbar = () => {
   const { toggleSidebar, setSubmenuId } = useStrapiContext();
+
+  const handleSubmenu = (e: any) => {
+    if (!e.target.classList.contains('nav-link')) {
+      setSubmenuId(null);
+    }
+  };
+
   return (
-    <nav>
+    <nav onMouseOver={handleSubmenu}>
       <div className='nav-center'>
         <div className='nav-header'>
           <img src={logo} className='logo' alt='strapi' />

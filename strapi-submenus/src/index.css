@@ -102,22 +102,28 @@ nav {
   .nav-center {
     display: flex;
     justify-content: space-between;
+    align-self: stretch;
   }
   .nav-links {
     display: flex;
     align-items: center;
     gap: 1rem;
+    align-self: stretch;
   }
   .nav-link {
     text-transform: capitalize;
     font-size: 0.87rem;
     color: #fff;
+    display: flex;
+    align-items: center;
+    align-self: stretch;
   }
   .sidebar-btn {
     display: none;
   }
   .get-started {
     display: block;
+    align-self: center;
     font-weight: 700;
     background-color: #4945ff;
     color: #fff;
@@ -293,7 +299,7 @@ nav {
   .submenu {
     display: block;
     position: fixed;
-    top: 6rem;
+    top: 5rem;
     left: 50%;
     width: 90vw;
     max-width: var(--max-Width);
@@ -305,10 +311,12 @@ nav {
     visibility: hidden;
     opacity: 0;
     transition: all 0.3s ease-in-out;
+    border-radius: 1rem;
   }
   .show-submenu {
     visibility: visible;
     opacity: 1;
+    z-index: 100;
     transform: rotateX(0deg) translateX(-50%);
   }
   .submenu-title {
