@@ -1,0 +1,125 @@
+/* font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+/* resetting */
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* variables */
+:root {
+  --background-Color: #121180;
+  --color-heading: #fff;
+  --color: #c0c0cf;
+  --font: 'Poppins', sans-serif;
+  --transition: all 0.1s ease-in-out;
+  --spacing: 2px;
+  --radius: 0.5rem;
+  --min-Width: 90vw;
+  --max-Width: 1170px;
+}
+
+body {
+  background-color: var(--background-Color);
+  color: var(--color);
+  line-height: 1;
+  font-family: var(--font);
+  font-size: 1rem;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #fff;
+  color: var(--background-Color);
+  padding: 0.375rem 0.775rem;
+  transition: var(--transition);
+  text-transform: capitalize;
+  letter-spacing: var(--spacing);
+  border-radius: var(--radius);
+  border: transparent;
+  cursor: pointer;
+}
+
+/* more to come */
+
+/* Navbar */
+
+nav {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+}
+.nav-center {
+  width: var(--min-Width);
+  max-width: var(--max-Width);
+  margin: 0 auto;
+}
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #121180;
+}
+.sidebar-btn {
+  padding: 0.75rem 0.75rem;
+}
+.sidebar-btn:hover {
+  padding: 0.8rem 0.8rem;
+}
+.sidebar-btn svg {
+  font-size: 1.2rem;
+}
+.logo {
+  width: 8rem;
+}
+
+.nav-links {
+  display: none;
+}
+.get-started {
+  display: none;
+}
+
+@media screen and (min-width: 900px) {
+  .nav-center {
+    display: flex;
+    justify-content: space-between;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .nav-link {
+    text-transform: capitalize;
+    font-size: 0.87rem;
+    color: #fff;
+  }
+  .sidebar-btn {
+    display: none;
+  }
+  .get-started {
+    display: block;
+    font-weight: 700;
+    background-color: #4945ff;
+    color: #fff;
+    padding: 0.875rem 1.5rem;
+  }
+}
