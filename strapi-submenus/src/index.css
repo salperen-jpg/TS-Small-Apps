@@ -283,3 +283,51 @@ nav {
   background-color: #fff;
   color: #8c4bff;
 }
+
+/* submenu */
+.submenu {
+  display: none;
+}
+
+@media screen and (min-width: 900px) {
+  .submenu {
+    display: block;
+    position: fixed;
+    top: 6rem;
+    left: 50%;
+    width: 90vw;
+    max-width: var(--max-Width);
+    background-color: #fff;
+    padding: 2rem;
+    transform: rotateX(-90deg) translateX(-50%);
+    transform-origin: top;
+    perspective: 1000px;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+  }
+  .show-submenu {
+    visibility: visible;
+    opacity: 1;
+    transform: rotateX(0deg) translateX(-50%);
+  }
+  .submenu-title {
+    display: block;
+    color: #1d1b84;
+    font-weight: 600;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+  .submenu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-transform: capitalize;
+  }
+  .submenu-link {
+    text-transform: capitalize;
+    color: #5e709d;
+    font-size: 0.875rem;
+  }
+}

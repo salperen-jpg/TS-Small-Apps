@@ -1,10 +1,9 @@
 import logo from '../assets/logo.png';
 import { FaBars } from 'react-icons/fa';
-import { nanoid } from 'nanoid';
 import data from '../data';
 import { useStrapiContext } from '../Context';
 const Navbar = () => {
-  const { toggleSidebar } = useStrapiContext();
+  const { toggleSidebar, setSubmenuId } = useStrapiContext();
   return (
     <nav>
       <div className='nav-center'>
@@ -17,7 +16,11 @@ const Navbar = () => {
         <ul className='nav-links'>
           {data.map((link) => {
             return (
-              <li key={nanoid()} className='nav-link'>
+              <li
+                key={link.id}
+                className='nav-link'
+                onMouseEnter={() => setSubmenuId(link.id)}
+              >
                 {link.title}
               </li>
             );
