@@ -9,10 +9,10 @@ const Clipboard = () => {
         </button>
       </div>
       <div className='btn-container'>
-        <button type='button' className='btn get-btn'>
+        <button type='button' className='btn big-btn get-btn'>
           get started
         </button>
-        <button type='button' className='btn white-btn'>
+        <button type='button' className='btn big-btn white-btn'>
           try the live demo
         </button>
       </div>

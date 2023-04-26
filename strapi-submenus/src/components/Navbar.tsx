@@ -1,5 +1,6 @@
 import logo from '../assets/logo.png';
 import { FaBars } from 'react-icons/fa';
+import { IoIosArrowDown } from 'react-icons/io';
 import data from '../data';
 import { useStrapiContext } from '../Context';
 const Navbar = () => {
@@ -28,7 +29,7 @@ const Navbar = () => {
                 className='nav-link'
                 onMouseEnter={() => setSubmenuId(link.id)}
               >
-                {link.title}
+                {link.title} <IoIosArrowDown />
               </li>
             );
           })}

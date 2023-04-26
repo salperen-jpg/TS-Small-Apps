@@ -1,15 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-
-interface ChildrenProp {
-  children: React.ReactNode;
-}
-
-interface ContextProp {
-  isSidebarOpen: boolean;
-  toggleSidebar: () => void;
-  submenuId: number | null;
-  setSubmenuId: (val: any) => void;
-}
+import { ContextProp, ChildrenProp } from './Models/context.types';
 
 const StrapiContext = createContext<ContextProp>({
   isSidebarOpen: false,
