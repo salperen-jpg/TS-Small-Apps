@@ -2,13 +2,15 @@ import logo from '../assets/logo.png';
 import { FaBars } from 'react-icons/fa';
 import { nanoid } from 'nanoid';
 import data from '../data';
+import { useStrapiContext } from '../Context';
 const Navbar = () => {
+  const { toggleSidebar } = useStrapiContext();
   return (
     <nav>
       <div className='nav-center'>
         <div className='nav-header'>
           <img src={logo} className='logo' alt='strapi' />
-          <button className='btn sidebar-btn'>
+          <button className='btn sidebar-btn' onClick={toggleSidebar}>
             <FaBars />
           </button>
         </div>

@@ -6,17 +6,23 @@ interface ChildrenProp {
 
 interface ContextProp {
   isSidebarOpen: boolean;
+  toggleSidebar: () => void;
 }
 
-const StrapiContext = createContext({
+const StrapiContext = createContext<ContextProp>({
   isSidebarOpen: false,
+  toggleSidebar() {},
 });
 
 export const AppProvider = ({ children }: ChildrenProp) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   return (
-    <StrapiContext.Provider value={{ isSidebarOpen }}>
+    <StrapiContext.Provider value={{ isSidebarOpen, toggleSidebar }}>
       {children}
     </StrapiContext.Provider>
   );
