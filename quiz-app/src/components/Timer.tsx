@@ -24,7 +24,12 @@ const Timer = () => {
   return (
     <div className='timer'>
       <FaStopwatch20 />
-      <h1>00:{currentSec >= 10 ? currentSec : `0${currentSec}`}</h1>
+      <h1>
+        00:
+        <span style={{ color: `rgba(203, 35, 118, 1) ` }}>
+          {currentSec >= 10 ? currentSec : `0${currentSec}`}
+        </span>
+      </h1>
     </div>
   );
 };

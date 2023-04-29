@@ -17,7 +17,7 @@ const Form = () => {
     <div className='container'>
       <form>
         <div className='title'>
-          <h2>Quiz</h2>
+          <h2>General Knowledge Quiz</h2>
           <div className='underline'></div>
         </div>
         <div className='form-row'>

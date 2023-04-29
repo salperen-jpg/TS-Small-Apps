@@ -123,10 +123,9 @@ label {
   display: block;
   text-transform: capitalize;
   color: var(--clr-primary-500);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.875rem;
   margin-bottom: 0.5rem;
-  letter-spacing: var(--spacing);
 }
 
 .form-row {

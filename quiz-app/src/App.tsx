@@ -1,4 +1,3 @@
-import './App.css';
 import { useQuizContext } from './context/context';
 import Form from './components/Form';
 import Modal from './components/Modal';
