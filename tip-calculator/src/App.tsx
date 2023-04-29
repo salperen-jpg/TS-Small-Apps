@@ -1,15 +1,11 @@
 import Form from './components/Form';
+import Title from './components/Title';
 import Total from './components/Total';
 
 function App() {
   return (
     <main>
-      <div className='title'>
-        <span>
-          spli <br></br>
-          tter
-        </span>
-      </div>
+      <Title />
       <div className='container'>
         <Form />
         <Total />

@@ -141,7 +141,7 @@ input {
   align-items: center;
 }
 .people-header .error {
-  color: red;
+  color: hsl(350, 78%, 41%);
   letter-spacing: 1px;
 }
 /* TOTAL */
