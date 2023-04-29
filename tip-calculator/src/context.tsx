@@ -1,20 +1,7 @@
 import { useContext, createContext, useState, useEffect } from 'react';
+import { ChildrenProp, ContextProp } from './Models';
 
-interface ContextProp {
-  formInputs: {
-    bill: number;
-    tip: number;
-    numberOfPeople: number;
-  };
-  handleChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLButtonElement>
-  ) => void;
-  isError: boolean;
-  total: number;
-  resetForm: () => void;
-}
-
-const TipContext = createContext<ContextProp>({
+const initialContextState = {
   formInputs: {
     bill: 0,
     tip: 0,
@@ -24,11 +11,9 @@ const TipContext = createContext<ContextProp>({
   isError: false,
   total: 0,
   resetForm() {},
-});
+};
 
-interface ChildrenProp {
-  children: React.ReactNode;
-}
+const TipContext = createContext<ContextProp>(initialContextState);
 
 export const AppProvider = ({ children }: ChildrenProp) => {
   const [formInputs, setFormInputs] = useState({
