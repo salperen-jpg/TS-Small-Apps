@@ -1,7 +1,8 @@
-import { FormEvent, useState } from 'react';
-import nanoid from 'nanoid';
+import { useState, useEffect } from 'react';
+import { nanoid } from 'nanoid';
 import { MdDelete, MdEditSquare } from 'react-icons/md';
 import Alert from './components/Alert';
+import { getFromLocalStorage } from './localStorage';
 
 interface Grocery {
   name: string;
@@ -11,12 +12,12 @@ interface Grocery {
 
 function App() {
   const [name, setName] = useState('');
-  const [groceries, setGroceries] = useState<Grocery[]>([]);
+  const [groceries, setGroceries] = useState<Grocery[]>(getFromLocalStorage());
   const [isEditing, setIsEditing] = useState(false);
   const [editingID, setEditingID] = useState<null | string>(null);
   const [isAlert, setIsAlert] = useState({ show: false, msg: '', type: '' });
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name) {
       toggleAlert(true, 'enter some value', 'danger');
@@ -41,7 +42,7 @@ function App() {
     const newGrocery = {
       name,
       isDone: false,
-      id: new Date().getDate().toString(),
+      id: nanoid(),
     };
     setGroceries([...groceries, newGrocery]);
     setName('');
@@ -75,6 +76,10 @@ function App() {
       })
     );
   };
+
+  useEffect(() => {
+    localStorage.setItem('groceries', JSON.stringify(groceries));
+  }, [groceries]);
 
   return (
     <main>
