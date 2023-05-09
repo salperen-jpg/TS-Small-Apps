@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
-import { MdDelete, MdEditSquare } from 'react-icons/md';
 import Alert from './components/Alert';
 import { getFromLocalStorage } from './localStorage';
+import Groceries from './components/Groceries';
+import Title from './components/Title';
 
-interface Grocery {
+export interface GroceryType {
   name: string;
   isDone: boolean;
   id: string;
@@ -12,7 +13,9 @@ interface Grocery {
 
 function App() {
   const [name, setName] = useState('');
-  const [groceries, setGroceries] = useState<Grocery[]>(getFromLocalStorage());
+  const [groceries, setGroceries] = useState<GroceryType[]>(
+    getFromLocalStorage()
+  );
   const [isEditing, setIsEditing] = useState(false);
   const [editingID, setEditingID] = useState<null | string>(null);
   const [isAlert, setIsAlert] = useState({ show: false, msg: '', type: '' });
@@ -85,9 +88,7 @@ function App() {
     <main>
       <div className='container'>
         {isAlert.show && <Alert {...isAlert} toggleAlert={toggleAlert} />}
-        <div className='title'>
-          <h2>Grocery bud</h2>
-        </div>
+        <Title />
         <form className='form' onSubmit={handleSubmit}>
           <input
             type='text'
@@ -100,38 +101,12 @@ function App() {
             {isEditing ? 'Edit' : 'Add'}
           </button>
         </form>
-        <div className='grocery-list'>
-          {groceries.map((grocery) => {
-            const { id, name, isDone } = grocery;
-            return (
-              <article key={id} className='grocery'>
-                <div className='left-side'>
-                  <input
-                    type='checkbox'
-                    checked={isDone}
-                    onChange={() => toggleIsDone(id)}
-                  />
-                  <span
-                    style={{ textDecoration: isDone ? 'line-through' : 'none' }}
-                  >
-                    {name}
-                  </span>
-                </div>
-                <div className='btn-container'>
-                  <button className='btn edit-btn' onClick={() => setID(id)}>
-                    <MdEditSquare />
-                  </button>
-                  <button
-                    className='btn delete-btn'
-                    onClick={() => deleteGrocery(id)}
-                  >
-                    <MdDelete />
-                  </button>
-                </div>
-              </article>
-            );
-          })}
-        </div>
+        <Groceries
+          groceries={groceries}
+          toggleIsDone={toggleIsDone}
+          setID={setID}
+          deleteGrocery={deleteGrocery}
+        />
       </div>
     </main>
   );
