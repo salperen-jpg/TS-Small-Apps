@@ -37,8 +37,8 @@ const Wrapper = styled.div`
   z-index: 9;
   .btn {
     padding: 0;
-    width: 2rem;
-    height: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
     font-size: 1.25rem;
     border-radius: 50%;
     display: grid;
