@@ -1,12 +1,12 @@
-import { useDictionaryApp } from '../context';
-import { BiPlay } from 'react-icons/bi';
-import { styled } from 'styled-components';
+import { useDictionaryApp } from "../context";
+import { BiPlay } from "react-icons/bi";
+import { styled } from "styled-components";
 const Keyword = () => {
   const { definition } = useDictionaryApp();
   const { word, phonetics } = definition![0];
 
   const getText = () => {
-    return phonetics.find((a: any) => a.text)!.text;
+    return phonetics.find((a: any) => a.text)?.text || "";
   };
 
   const getAudio = () => {
