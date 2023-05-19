@@ -10,6 +10,7 @@ const Meanings: React.FC<ISingleDef> = ({ meanings, sourceUrls }) => {
           return <Meaning key={nanoid()} {...meaning} />;
         })}
       </div>
+      <hr />
       <div className='source'>
         <small>Source</small>
         <small>{sourceUrls}</small>

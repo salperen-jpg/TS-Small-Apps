@@ -60,7 +60,6 @@ const Meaning: React.FC<IMeaning> = ({
           <span className='list'>{getAntonyms()}</span>
         </div>
       )}
-      <hr />
     </Wrapper>
   );
 };
@@ -68,6 +67,7 @@ export default Meaning;
 
 const Wrapper = styled.article`
   header {
+    margin-bottom: 1rem;
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
