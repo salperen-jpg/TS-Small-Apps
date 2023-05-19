@@ -2,13 +2,12 @@ import { FaSearch } from "react-icons/fa";
 import { useDictionaryApp } from "../context";
 import { styled } from "styled-components";
 const Form = () => {
-  const { fetchDefinition } = useDictionaryApp();
+  const { fetchDefinition, isError, toggleError } = useDictionaryApp();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("clicked");
-
-    const inputVal = event.target!.elements!.word.value;
+    const inputVal = event.target.elements.word.value;
+    toggleError(true, "Please enter a word.");
     if (!inputVal) return;
     fetchDefinition(inputVal);
   };
@@ -20,13 +19,14 @@ const Form = () => {
           <input
             type='text'
             name='word'
-            className='form-input'
+            className={isError.show ? `form-input red-border` : `form-input`}
             placeholder='search for keyword...'
           />
           <button type='submit' className='btn submit-btn'>
             <FaSearch />
           </button>
         </div>
+        {isError.show && <p className='error'>{isError.msg}</p>}
       </form>
     </Wrapper>
   );
@@ -59,6 +59,9 @@ const Wrapper = styled.section`
   }
   .form-input::placeholder {
     text-transform: capitalize;
+  }
+  .red-border {
+    border: 2px solid var(--red-dark);
   }
 
   .submit-btn {

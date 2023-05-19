@@ -1,5 +1,5 @@
 /* FONT */
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:ital,wght@0,400;1,700&family=Space+Grotesk:wght@400;700&display=swap");
 
 /* RESETTING */
 *,
@@ -43,10 +43,13 @@
   --green-dark: #0f5132;
   /* fonts  */
   --font: "Roboto";
+  --font-roboto: "Roboto", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  --font-spaceGrotesk: "Space Grotesk", sans-serif;
   /* rest of the vars */
   --backgroundColor: var(--grey-50);
   --textColor: var(--grey-900);
-  --borderRadius: 0.25rem;
+  --borderRadius: 0.5rem;
   --letterSpacing: 1px;
   --transition: 0.3s ease-in-out all;
   --max-width: 700px;
@@ -104,6 +107,19 @@ h4 {
   }
 }
 
+/* FONTS */
+
+.roboto {
+  --font: var(--font-roboto);
+}
+.space-grotesk {
+  --font: var(var(--font-spaceGrotesk));
+}
+
+.poppins {
+  --font: var(--font-poppins);
+}
+
 body {
   font-family: var(--font);
   line-height: 1.5;
@@ -124,4 +140,13 @@ section {
   width: var(--fluid-width);
   margin-inline: auto;
   max-width: var(--max-width);
+}
+
+/* ERROR */
+.error {
+  margin-top: 1rem;
+  font-weight: 700;
+  font-size: 0.87rem;
+  letter-spacing: var(--letterSpacing);
+  color: var(--red-dark);
 }

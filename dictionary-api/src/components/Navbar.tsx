@@ -1,8 +1,8 @@
-import { styled } from 'styled-components';
-import logo from '../assets/logo.svg';
-import { useDictionaryApp } from '../context';
-import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs';
-const fontOptions = ['space-grotesk', 'roboto', 'space-mono'];
+import { styled } from "styled-components";
+import logo from "../assets/logo.svg";
+import { useDictionaryApp } from "../context";
+import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
+const fontOptions = ["space-grotesk", "roboto", "poppins"];
 
 const Navbar = () => {
   const { fontFamily, isDarkTheme, setFont, toggleTheme } = useDictionaryApp();

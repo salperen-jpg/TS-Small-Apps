@@ -18,6 +18,7 @@ interface IContextType {
   toggleTheme: () => void;
   setFont: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   fetchDefinition: (value: string) => void;
+  toggleError: (show: boolean, msg: string) => void;
 }
 
 interface IPhonetic {
@@ -65,7 +66,8 @@ const DictionaryContext = createContext<IContextType>({
   fontFamily: "space-grotesk",
   toggleTheme: () => {},
   setFont: (e: React.ChangeEvent<HTMLSelectElement>) => {},
-  fetchDefinition: (val) => {},
+  fetchDefinition: () => {},
+  toggleError: () => {},
 });
 
 export const AppProvider = ({ children }: IChildrenProp) => {
@@ -82,13 +84,12 @@ export const AppProvider = ({ children }: IChildrenProp) => {
     setIsLoading(true);
     try {
       const { data } = await axios(`${API_ENDPOINT}/${value}`);
-      console.log(data);
-      const newObject = {};
+      toggleError();
       setDefinition(data);
     } catch (error) {
       if (error instanceof AxiosError) {
         console.log(error);
-        // THROW ERROR
+        toggleError(true, "Word could not find...");
       } else {
         throw new Error("something went wrong");
       }
@@ -96,9 +97,15 @@ export const AppProvider = ({ children }: IChildrenProp) => {
     setIsLoading(false);
   };
 
+  const toggleError = (show = false, msg = "") => {
+    setIsError({ show, msg });
+  };
+
   useEffect(() => {
     fetchDefinition("hello");
   }, []);
+
+  useEffect(() => {}, []);
 
   const toggleTheme = () => {
     const newTheme = !isDarkTheme;
@@ -106,7 +113,11 @@ export const AppProvider = ({ children }: IChildrenProp) => {
   };
 
   const setFont = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFontFamily(e.target.value);
+    const bodyElement = document.querySelector("body");
+    bodyElement?.classList.remove(fontFamily);
+    const newFont = e.target.value;
+    setFontFamily(newFont);
+    bodyElement?.classList.add(newFont);
   };
 
   return (
@@ -120,6 +131,7 @@ export const AppProvider = ({ children }: IChildrenProp) => {
         toggleTheme,
         setFont,
         fetchDefinition,
+        toggleError,
       }}
     >
       {children}
