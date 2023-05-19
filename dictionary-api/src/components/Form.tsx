@@ -47,12 +47,13 @@ const Wrapper = styled.section`
     padding: 0.5rem 1rem;
     border-radius: var(--borderRadius);
     font-family: inherit;
-    letter-spacing: 1.5px;
+    letter-spacing: var(--letterSpacing);
     font-size: 1rem;
     font-weight: 700;
     border: transparent;
     outline: none;
     background-color: var(--grey-100);
+    color: inherit;
   }
   .form-input:focus {
     border: 2px solid var(--primary-900);

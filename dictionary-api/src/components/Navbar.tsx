@@ -23,7 +23,7 @@ const Navbar = () => {
             </select>
           </div>
           <div className='theme'>
-            <button onClick={toggleTheme}>
+            <button className='btn theme-btn' onClick={toggleTheme}>
               {isDarkTheme ? <BsFillMoonFill /> : <BsFillSunFill />}
             </button>
           </div>
@@ -49,6 +49,17 @@ const Wrapper = styled.nav`
     .font {
       padding: 0.5rem 1rem;
       border-right: 1px solid var(--grey-100);
+    }
+    .theme-btn {
+      background-color: transparent;
+      color: var(--primary-500);
+      transition: all 0.3s ease-in-out;
+      svg {
+        font-size: 1.5rem;
+      }
+    }
+    .theme-btn:hover {
+      transform: rotate(180deg);
     }
   }
 `;

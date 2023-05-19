@@ -8,7 +8,6 @@ const DifferentMeanings = () => {
     <section>
       <div className='section-center'>
         {definition?.map((d) => {
-          console.log(d);
           return <Meanings key={nanoid()} {...d} />;
         })}
       </div>

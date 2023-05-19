@@ -1,74 +1,26 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import axios, { AxiosError } from "axios";
-import { API_ENDPOINT } from "./utils/constants";
+import { API_ENDPOINT, initialContextValues } from "./utils/constants";
+import { grabBodyElement } from "./utils/helpers";
+import {
+  IChildrenProp,
+  IContextType,
+  ISingleDef,
+} from "./utils/Dictionary.Models";
 
-interface IChildrenProp {
-  children: React.ReactNode;
-}
+const DictionaryContext = createContext<IContextType>(initialContextValues);
 
-interface IContextType {
-  isLoading: boolean;
-  isError: {
-    show: boolean;
-    msg: string;
-  };
-  definition: ISingleDef[] | undefined;
-  isDarkTheme: boolean;
-  fontFamily: string;
-  toggleTheme: () => void;
-  setFont: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  fetchDefinition: (value: string) => void;
-  toggleError: (show: boolean, msg: string) => void;
-}
-
-interface IPhonetic {
-  audio?: string;
-  sourceUri?: string;
-  text?: string;
-  license?: {
-    name: string;
-    uri: string;
-  };
-}
-
-export interface IMeaning {
-  partOfSpeech: string;
-  definitions: {
-    definition: string;
-    synonyms: string[];
-    antonyms: string[];
-    example?: string;
-  }[];
-  synonyms: string[];
-  antonyms: string[];
-  sourceUrls: string;
-}
-
-export interface ISingleDef {
-  word: string;
-  phonetics: IPhonetic[];
-  meanings: IMeaning[];
-  license?: {
-    name: string;
-    url: string;
-  };
-  sourceUrls: string[];
-}
-
-const DictionaryContext = createContext<IContextType>({
-  isLoading: false,
-  isError: {
-    show: false,
-    msg: "",
-  },
-  definition: undefined,
-  isDarkTheme: false,
-  fontFamily: "space-grotesk",
-  toggleTheme: () => {},
-  setFont: (e: React.ChangeEvent<HTMLSelectElement>) => {},
-  fetchDefinition: () => {},
-  toggleError: () => {},
-});
+const getInitialTheme = () => {
+  const isDarkPreffered = window.matchMedia(
+    "(prefers-color-scheme:dark)"
+  ).matches;
+  const storedTheme = localStorage.getItem("theme");
+  if (storedTheme === "false") {
+    return false;
+  } else {
+    return isDarkPreffered;
+  }
+};
 
 export const AppProvider = ({ children }: IChildrenProp) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -77,7 +29,7 @@ export const AppProvider = ({ children }: IChildrenProp) => {
     msg: "",
   });
   const [definition, setDefinition] = useState<ISingleDef[] | undefined>();
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(getInitialTheme());
   const [fontFamily, setFontFamily] = useState("space-grotesk");
 
   const fetchDefinition = async (value: string) => {
@@ -101,25 +53,26 @@ export const AppProvider = ({ children }: IChildrenProp) => {
     setIsError({ show, msg });
   };
 
-  useEffect(() => {
-    fetchDefinition("hello");
-  }, []);
-
-  useEffect(() => {}, []);
-
   const toggleTheme = () => {
     const newTheme = !isDarkTheme;
     setIsDarkTheme(newTheme);
+    localStorage.setItem("theme", JSON.stringify(newTheme));
   };
 
   const setFont = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const bodyElement = document.querySelector("body");
+    const bodyElement = grabBodyElement();
     bodyElement?.classList.remove(fontFamily);
     const newFont = e.target.value;
     setFontFamily(newFont);
     bodyElement?.classList.add(newFont);
   };
+  useEffect(() => {
+    fetchDefinition("hello");
+  }, []);
 
+  useEffect(() => {
+    grabBodyElement()!.classList.toggle("dark-theme", isDarkTheme);
+  }, [isDarkTheme]);
   return (
     <DictionaryContext.Provider
       value={{

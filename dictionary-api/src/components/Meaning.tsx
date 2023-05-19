@@ -1,6 +1,6 @@
-import { IMeaning } from "../context";
 import { styled } from "styled-components";
 import { nanoid } from "nanoid";
+import { IMeaning } from "../utils/Dictionary.Models";
 const Meaning: React.FC<IMeaning> = ({
   partOfSpeech,
   definitions,
