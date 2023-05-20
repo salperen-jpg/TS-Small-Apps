@@ -59,10 +59,11 @@ export const AppProvider = ({ children }: IChildrenProp) => {
     localStorage.setItem("theme", JSON.stringify(newTheme));
   };
 
-  const setFont = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const setFont = (value: string) => {
     const bodyElement = grabBodyElement();
     bodyElement?.classList.remove(fontFamily);
-    const newFont = e.target.value;
+    const newFont = value;
+    console.log(value);
     setFontFamily(newFont);
     bodyElement?.classList.add(newFont);
   };
@@ -73,6 +74,7 @@ export const AppProvider = ({ children }: IChildrenProp) => {
   useEffect(() => {
     grabBodyElement()!.classList.toggle("dark-theme", isDarkTheme);
   }, [isDarkTheme]);
+
   return (
     <DictionaryContext.Provider
       value={{

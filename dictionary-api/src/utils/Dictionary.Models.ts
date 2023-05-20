@@ -12,7 +12,7 @@ export interface IContextType {
   isDarkTheme: boolean;
   fontFamily: string;
   toggleTheme: () => void;
-  setFont: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  setFont: (value: string) => void;
   fetchDefinition: (value: string) => void;
   toggleError: (show: boolean, msg: string) => void;
 }

@@ -14,7 +14,7 @@ const Form = () => {
 
   return (
     <Wrapper>
-      <form className='section-center' onSubmit={handleSubmit}>
+      <form className='section-center form' onSubmit={handleSubmit}>
         <div className='form-container'>
           <input
             type='text'
@@ -55,12 +55,14 @@ const Wrapper = styled.section`
     background-color: var(--grey-100);
     color: inherit;
   }
+
   .form-input:focus {
     border: 2px solid var(--primary-900);
   }
   .form-input::placeholder {
     text-transform: capitalize;
   }
+
   .red-border {
     border: 2px solid var(--red-dark);
   }
@@ -74,7 +76,6 @@ const Wrapper = styled.section`
     right: 0;
     transform: translateY(-50%);
     background-color: transparent;
-
     color: var(--primary-900);
     svg {
       font-size: 1.5rem;

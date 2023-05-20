@@ -10,7 +10,7 @@ export const initialContextValues = {
   isDarkTheme: false,
   fontFamily: "space-grotesk",
   toggleTheme: () => {},
-  setFont: (e: React.ChangeEvent<HTMLSelectElement>) => {},
+  setFont: () => {},
   fetchDefinition: () => {},
   toggleError: () => {},
 };

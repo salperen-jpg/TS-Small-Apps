@@ -34,7 +34,7 @@
   --grey-800: #243b53;
   --grey-900: #102a43;
   /* rest of the colors */
-  --black: #222;
+  --black: #111;
   --white: #fff;
   --red-light: #f8d7da;
   --red-dark: #842029;
@@ -42,7 +42,7 @@
   --green-light: #d1e7dd;
   --green-dark: #0f5132;
   /* fonts  */
-  --font: "Roboto";
+  --font: "Space Grotesk", sans-serif;
   --font-roboto: "Roboto", sans-serif;
   --font-poppins: "Poppins", sans-serif;
   --font-spaceGrotesk: "Space Grotesk", sans-serif;
@@ -70,6 +70,7 @@
 .dark-theme {
   --backgroundColor: var(--darkBackgroundColor);
   --textColor: var(--darkTextColor);
+  --grey-100: var(--grey-400);
 }
 
 body {
@@ -157,4 +158,12 @@ section {
   font-size: 0.87rem;
   letter-spacing: var(--letterSpacing);
   color: var(--red-dark);
+}
+
+.dark-theme .form-input:focus {
+  border: 2px solid var(--white);
+}
+
+.dark-theme .form-input::placeholder {
+  color: #fff;
 }
