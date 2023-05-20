@@ -1,5 +1,5 @@
 /* font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
 /* resetting */
 *,
@@ -15,7 +15,7 @@
   --background-Color: #121180;
   --color-heading: #fff;
   --color: #c0c0cf;
-  --font: 'Poppins', sans-serif;
+  --font: "Poppins", sans-serif;
   --transition: all 0.1s ease-in-out;
   --spacing: 2px;
   --radius: 0.5rem;
@@ -270,7 +270,7 @@ nav {
   color: #fff;
 }
 .clipboard-btn svg {
-  font-size: 1.15rem;
+  font-size: 1.5rem;
 }
 .btn-container {
   margin-top: 1rem;
