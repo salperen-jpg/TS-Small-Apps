@@ -15,11 +15,7 @@ const getInitialTheme = () => {
     "(prefers-color-scheme:dark)"
   ).matches;
   const storedTheme = localStorage.getItem("theme");
-  if (storedTheme === "false") {
-    return false;
-  } else {
-    return isDarkPreffered;
-  }
+  return storedTheme === "false" ? false : isDarkPreffered;
 };
 
 export const AppProvider = ({ children }: IChildrenProp) => {
@@ -63,7 +59,6 @@ export const AppProvider = ({ children }: IChildrenProp) => {
     const bodyElement = grabBodyElement();
     bodyElement?.classList.remove(fontFamily);
     const newFont = value;
-    console.log(value);
     setFontFamily(newFont);
     bodyElement?.classList.add(newFont);
   };

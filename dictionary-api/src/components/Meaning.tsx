@@ -6,7 +6,6 @@ const Meaning: React.FC<IMeaning> = ({
   definitions,
   synonyms,
   antonyms,
-  sourceUrls,
 }) => {
   const getSynonmys = () => {
     if (synonyms.length === 1) {
@@ -32,7 +31,7 @@ const Meaning: React.FC<IMeaning> = ({
   return (
     <Wrapper>
       <header>
-        <span>{partOfSpeech}</span>
+        <span className='partOfSpeech'>{partOfSpeech}</span>
         <hr />
       </header>
       <h4>meaning</h4>
@@ -67,11 +66,18 @@ export default Meaning;
 
 const Wrapper = styled.article`
   header {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
     gap: 3rem;
+    span {
+      text-transform: capitalize;
+      letter-spacing: 1px;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
   }
   h4 {
     text-transform: capitalize;

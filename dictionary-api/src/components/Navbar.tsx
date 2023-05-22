@@ -1,57 +1,21 @@
-import { useState } from "react";
 import { styled } from "styled-components";
 import logo from "../assets/logo.svg";
 import { useDictionaryApp } from "../context";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
-import { MdOutlineArrowDropDown, MdOutlineArrowDropUp } from "react-icons/md";
-import { nanoid } from "nanoid";
-const fontOptions = ["space-grotesk", "roboto", "poppins"];
+import FontToggle from "./FontToggle";
 
 const Navbar = () => {
-  const { fontFamily, isDarkTheme, setFont, toggleTheme } = useDictionaryApp();
-  const [showDropDown, setShowDropDown] = useState(false);
+  const { isDarkTheme, toggleTheme } = useDictionaryApp();
 
-  const toggleDropDown = () => {
-    setShowDropDown(!showDropDown);
-  };
   return (
     <Wrapper>
       <div className='nav-center section-center '>
         <img src={logo} className='logo' alt='dictionary' />
         <div className='nav-center-right'>
-          <div className='font-container'>
-            <button
-              type='button'
-              className='btn font-toggle'
-              onClick={toggleDropDown}
-            >
-              {fontFamily}
-              {showDropDown ? (
-                <MdOutlineArrowDropUp />
-              ) : (
-                <MdOutlineArrowDropDown />
-              )}
-            </button>
-            <div className={showDropDown ? "fonts show-fonts" : "fonts"}>
-              {fontOptions.map((option) => {
-                return (
-                  <p
-                    className='single-font'
-                    key={nanoid()}
-                    onClick={() => {
-                      console.log("clicked");
-                      setFont(option);
-                    }}
-                  >
-                    {option}
-                  </p>
-                );
-              })}
-            </div>
-          </div>
+          <FontToggle />
           <div className='theme'>
             <button className='btn theme-btn' onClick={toggleTheme}>
-              {isDarkTheme ? <BsFillMoonFill /> : <BsFillSunFill />}
+              {isDarkTheme ? <BsFillSunFill /> : <BsFillMoonFill />}
             </button>
           </div>
         </div>
@@ -65,9 +29,12 @@ const Wrapper = styled.nav`
   height: 6rem;
   display: flex;
   align-items: center;
+
   .nav-center {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
   }
   .nav-center-right {
     display: flex;
