@@ -1,15 +1,19 @@
 import { FaSearch } from "react-icons/fa";
 import { useDictionaryApp } from "../context";
 import { styled } from "styled-components";
+import { useRef } from "react";
 const Form = () => {
   const { fetchDefinition, isError, toggleError } = useDictionaryApp();
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const inputVal = event.target.elements.word.value;
-    toggleError(true, "Please enter a word.");
-    if (!inputVal) return;
-    fetchDefinition(inputVal);
+    if (null !== inputRef.current) {
+      const value = inputRef.current.value;
+      toggleError(true, "Please enter a word.");
+      if (!value) return;
+      fetchDefinition(value);
+    }
   };
 
   return (
@@ -17,6 +21,7 @@ const Form = () => {
       <form className='section-center form' onSubmit={handleSubmit}>
         <div className='form-container'>
           <input
+            ref={inputRef}
             type='text'
             name='word'
             className={isError.show ? `form-input red-border` : `form-input`}
