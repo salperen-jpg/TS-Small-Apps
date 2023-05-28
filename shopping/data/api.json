@@ -1,0 +1,27 @@
+{
+  "product": {
+    "id": 1,
+    "name": "Limitied shoes",
+    "images": [
+      {
+        "url": "image-product-1.jpg"
+      },
+      {
+        "url": "image-product-2.jpg"
+      },
+      {
+        "url": "image-product-3.jpg"
+      },
+      {
+        "url": "image-product-4.jpg"
+      }
+    ],
+    "company": "sneaker company",
+    "title": "fall limited edition sneakers",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit.Ppora placeat inventore quibusdam enim iure minus molestias fuga.",
+    "price": 250,
+    "finalPrice": 125,
+    "discountPercent": 50,
+    "amount": 0
+  }
+}
