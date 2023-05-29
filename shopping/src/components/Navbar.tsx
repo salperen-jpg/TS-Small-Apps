@@ -3,7 +3,7 @@ import { FaBars, FaShoppingCart } from "react-icons/fa";
 import avatar from "../assets/avatar.png";
 import { navLinks } from "../links";
 import { useAppDispatch } from "../redux/hooks";
-import { toggleSidebar } from "../redux/feature/UISlice";
+import { toggleCart, toggleSidebar } from "../redux/feature/UISlice";
 const Navbar = () => {
   const dispatch = useAppDispatch();
 
@@ -27,7 +27,10 @@ const Navbar = () => {
             );
           })}
         </ul>
-        <div className='nav-shopping-basket-container'>
+        <div
+          className='nav-shopping-basket-container'
+          onClick={() => dispatch(toggleCart())}
+        >
           <FaShoppingCart />
           <div className='amount'>0</div>
         </div>
@@ -73,6 +76,7 @@ const Wrapper = styled.nav`
     margin-right: 0.5rem;
     display: grid;
     place-items: center;
+    cursor: pointer;
   }
   .amount {
     position: absolute;

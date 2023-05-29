@@ -6,7 +6,7 @@ const Cart = () => {
   const { isCartOpen } = useAppSelector((store) => store.UI);
   return (
     <Wrapper>
-      <aside className='cart'>
+      <aside className={isCartOpen ? "cart show-cart" : "cart"}>
         <div className='cart-container'>
           <div className='cart-header'>
             <span>Cart</span>
@@ -53,6 +53,15 @@ const Wrapper = styled.div`
     top: 7rem;
     width: 100%;
     height: 100%;
+    transform: translateY(-100%);
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.3s ease-in-out;
+  }
+  .show-cart {
+    transform: translateY(0);
+    opacity: 1;
+    z-index: 10;
   }
   .cart-container {
     background-color: var(--white);
