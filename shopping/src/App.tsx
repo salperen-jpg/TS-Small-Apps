@@ -1,3 +1,4 @@
+import Cart from "./components/Cart";
 import Navbar from "./components/Navbar";
 import Product from "./components/Product";
 import Sidebar from "./components/Sidebar";
@@ -8,6 +9,7 @@ function App() {
       <Navbar />
       <Sidebar />
       <Product />
+      <Cart />
     </div>
   );
 }

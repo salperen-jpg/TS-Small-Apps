@@ -21,7 +21,11 @@ const Sidebar = () => {
           <ul className='sidebar-links'>
             {navLinks.map((navLink) => {
               return (
-                <li className='sidebar-link' key={navLink.id}>
+                <li
+                  className='sidebar-link'
+                  key={navLink.id}
+                  onClick={() => dispatch(toggleSidebar())}
+                >
                   <a href={navLink.url}>{navLink.text}</a>
                 </li>
               );
