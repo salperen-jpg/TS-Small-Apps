@@ -2,10 +2,16 @@ import styled from "styled-components";
 import { FaBars, FaShoppingCart } from "react-icons/fa";
 import avatar from "../assets/avatar.png";
 import { navLinks } from "../links";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { toggleCart, toggleSidebar } from "../redux/feature/UISlice";
+import { useEffect } from "react";
+import { calculateTotalAmount } from "../redux/feature/productSlice";
 const Navbar = () => {
   const dispatch = useAppDispatch();
+  const { amount } = useAppSelector((store) => store.product);
+  useEffect(() => {
+    dispatch(calculateTotalAmount());
+  });
 
   return (
     <Wrapper>
@@ -32,7 +38,7 @@ const Navbar = () => {
           onClick={() => dispatch(toggleCart())}
         >
           <FaShoppingCart />
-          <div className='amount'>0</div>
+          <div className='amount'>{amount}</div>
         </div>
         <img className='avatar' src={avatar} alt='user' />
       </div>
@@ -82,8 +88,8 @@ const Wrapper = styled.nav`
     position: absolute;
     top: -0.75rem;
     right: -0.5rem;
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.3rem;
+    height: 1.3rem;
     font-size: 0.8rem;
     border-radius: 50%;
     display: grid;
@@ -95,7 +101,7 @@ const Wrapper = styled.nav`
     width: 2.2rem;
   }
   svg {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
   @media (min-width: 1200px) {
     .hamburger {

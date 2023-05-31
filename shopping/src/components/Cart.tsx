@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useAppSelector } from "../redux/hooks";
 import { FaTrash } from "react-icons/fa";
+import { ICart } from "../redux/feature/productSlice";
 const Cart = () => {
   const { cart } = useAppSelector((store) => store.product);
   const { isCartOpen } = useAppSelector((store) => store.UI);
@@ -17,7 +18,7 @@ const Cart = () => {
             </div>
           ) : (
             <div className='cart-info'>
-              {cart.map((item) => {
+              {cart.map((item: ICart) => {
                 const { id, images, title, amount, finalPrice } = item;
                 return (
                   <article key={id}>
@@ -122,5 +123,11 @@ const Wrapper = styled.div`
     text-transform: capitalize;
     font-weight: 600;
     letter-spacing: 1px;
+  }
+  @media (min-width: 800px) {
+    .cart-container {
+      margin-left: auto;
+      margin-right: 30vh;
+    }
   }
 `;
